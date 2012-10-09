@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta  charset="UTF-8" />
+<title>무제 문서</title>
+<link href="../common/css/plugindialog.css" rel="stylesheet" type="text/css" media=""/>
+</head>
+<body>
+
+<script>
+		
+	/*
+	* 확인 버튼을 눌렀을 때 에디터에게 설정 값들을 반환 한다.
+	*/
+		
+	function editorInsert(){
+		
+		var state=false;
+		var re =/^(file|gopher|news|nntp|telnet|https?|ftps?):\/\/([a-z0-9-]+\.)+[a-z0-9]{2,4}.*$/
+
+		var obj = document.getElementById("jce_link");
+		var target = document.getElementById("jce_target");
+		var caption = document.getElementById("jce_cap");
+/*		
+		var targetLength = target.options.length;
+		var targetValue = null;
+		
+		for ( var i = 0; i < targetLength; i++) {
+			if (target.options[i].selected) {
+				targetValue = target.options[i].value;
+			} 
+			
+		}
+*/		
+		if (!re.test(obj.value)) {
+			window.alert("URL 형식이 올바르지 않습니다.");
+			return;
+		}else{
+			state = true;
+		} 
+		
+		return {
+			state : state,
+			url : obj.value,
+			target : target.value,
+			caption : caption.value
+		}		
+	}
+	
+	/**
+	*
+	* 에디터에서 초기화 시킬 수 있게 한다.
+	*
+	*/
+	
+	function pluginReset(){
+	
+		var obj = document.getElementById("jce_plugin_popup");
+		obj.reset();	
+	}
+	
+	/**
+	* 프로토콜 변경시 URL에 기존내용을 제거하고 프로토콜을 변경한다.
+	*/
+	function protocolSelect(){
+		var obj = document.getElementById("jce_link");
+		var protocol = document.getElementById("jce_protocol");
+		obj.value =protocol.value;	
+	}
+	
+	
+</script>
+<form id="jce_plugin_popup">
+<div class="jceditor-dialog-div">
+<fieldset class="hyperlinkfieldset">
+<legend><span>속성</span></legend>
+      <table border="0" cellspacing="4" class="hyperlinktable">
+        <tr>
+          <td align="right" width="50px"><span class="normal">유형:&nbsp;</span>
+          </td>
+          <td>
+            <select name="protocol" id="jce_protocol" onchange="protocolSelect()">
+            <option value="http://" selected="selected">http</option>
+            <option value="https://">https</option>
+            <option value="file://">file</option>
+            <option value="telnet://">telnet</option>
+            <option value="gopher://">gopher</option>
+            <option value="news://">news</option>
+            <option value="nntp://">nntp</option>
+            </select>
+          </td>
+          <td align="right"><span class="normal">타겟:&nbsp;</span>
+          </td>
+          <td>
+            <select name="target" id="jce_target">
+              <option value="">없음</option>
+              <option value="_self">_self</option>
+              <option value="_blank" selected="selected">_blank</option>
+              <option value="_parent">_parent</option>
+              <option value="_top">_top</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td align="right"><span class="normal">설명:&nbsp;</span>
+          </td>
+          <td colspan="3">
+            <input type="text" name="caption" id="jce_cap" value="" size="40" class="longinput"/>
+          </td>
+        </tr>
+      </table>
+</fieldset>
+<fieldset class="hyperlinkfieldset">
+<legend><span>주소</span></legend>
+      <table border="0" cellspacing="4">
+        <tr>
+          <td width="50" align="right"><span class="normal">링크:&nbsp;</span>
+          </td>
+          <td>
+            <input type="text" name="title" id="jce_link" value="http://" size="40" class="longinput" />
+          </td>
+        </tr>
+      </table>
+</fieldset>
+<ul class="footerBtn-ul">
+<li class="btnRight"><span class="button"><button type="button" id="jce_confirm">확인</button></span></li>
+<li class="btnLeft"><span class="button"><button type="button" id="jce_cancel">취소</button></span></li>
+</ul>
+
+</div>
+</form>
+</body>
+</html>

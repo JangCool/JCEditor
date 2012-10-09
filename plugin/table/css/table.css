@@ -1,0 +1,237 @@
+@CHARSET "UTF-8";
+.jceditor-dialog-div {
+	margin:0;
+	width:365px;
+	height:500px;
+	background-color:#f4f4f4;
+	overflow: hidden;	
+}
+
+
+.jceditor-dialog-div .table-fieldset{   
+	clear:both;
+	display:inline;
+	margin-top:12px;
+	margin-left:11px;
+	padding-bottom:10px;
+	*padding-bottom:10px;
+	padding-top:2px;
+	border:solid 1px #CCC;
+	line-height: 17px;
+	position:relative;
+	overflow:hidden;
+	width:340px;
+	height:auto;
+}
+.jceditor-dialog-div .preview-div{
+
+	margin-top:12px;
+	margin-left:11px;
+	width:340px;
+	height:62px;
+	border:solid 1px #CCC;	
+	vertical-align: middle;
+	text-align: center;
+	vertical-align: middle;
+
+}
+.jceditor-dialog-div .preview-div .preview-img {
+	
+	border:1px solid  #CCC;
+	max-width:300px;
+	width:auto !important;
+	width:300px;
+	
+	max-height: 200px;
+	height:auto !important;
+	height:200px;
+ 
+}
+
+.jceditor-dialog-div .table-fieldset dl{
+	margin-left:11px;
+	margin-top:2px;
+	width:330px;
+	height:18px;
+}
+
+.jceditor-dialog-div .table-fieldset dt{
+	float:left;
+	height:21px;
+	padding-top:1px;
+	
+}
+
+.jceditor-dialog-div .table-fieldset .align_left {
+	display:inline-block;
+	background: url(../images/align_left.gif);
+	width:12px;
+	height:14px;
+}
+.jceditor-dialog-div .table-fieldset .align_center{
+	display:inline-block;
+	background: url(../images/align_center.gif);
+	width:12px;
+	height:14px;
+}
+
+.jceditor-dialog-div .table-fieldset .align_right {
+	display:inline-block;
+	background: url(../images/align_right.gif);
+	width:12px;
+	height:14px;
+}
+
+
+.jceditor-dialog-div .table-fieldset .radio_button {
+    width:14px;
+    height:14px;
+    border:none;
+    background-color: #f4f4f4;
+}
+
+.jceditor-dialog-div .table-fieldset .text_input {
+    width:40px;
+    height:14px;
+}
+
+.jceditor-dialog-div .table-fieldset .url_input {
+    width:200px;
+    height:17px;
+}
+
+.jceditor-dialog-div .table-fieldset .align{
+	float:left;
+	width:40px;	
+}
+
+.jceditor-dialog-div .table-fieldset .size{
+	float:left;
+	width:80px;		
+}
+
+.jceditor-dialog-div .table-fieldset  .preview_btn{
+	float:left;
+	_float:none;
+	display:block;
+	margin-left:140px;	
+}
+
+.jceditor-dialog-div .table-fieldset  .size_check{
+	float:left;
+	margin-left:20px;
+}
+
+.jceditor-dialog-div .table-fieldset .lv1{
+	float:left;
+	width:40px;	
+	margin-left:20px;
+	_margin-left:10px;
+}
+
+
+.jceditor-dialog-div .table-fieldset .lv2{	
+	margin-left:35px;
+	float:left;
+	width:40px;	
+}
+
+
+.jceditor-dialog-div .table-fieldset .lv3{	
+	margin-left:60px;
+	float:left;
+	width:40px;	
+}
+
+.jceditor-dialog-div .table-fieldset .lv4{	
+	margin-left:20px;
+	float:left;
+	width:40px;	
+}
+
+
+
+.jceditor-dialog-div .table-fieldset .seperateline-div{	
+	clear:both;
+	margin : 12px;
+	_margin-top:0px;
+	_margin-bottom:0px;
+	border-top:1px solid #ddd;
+	border-left:1px solid #ddd;
+	
+}
+
+.jceditor-dialog-div table
+{
+	position:relative;
+	width:319px;
+	height:40px;
+	border:1px solid #CCC;
+	border-collapse: collapse;
+	background-color:white;
+	
+}
+
+
+
+.jceditor-dialog-div td {
+	border:1px solid #CCC;
+	width:auto;
+}
+
+
+.jceditor-dialog-div  .table-fieldset  .jceditor-color-div{
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:2px;    
+}
+
+.jceditor-dialog-div .table-fieldset  .jceditor-color-div span {
+	width:100%;
+	height:8px;
+	display:block;
+	cursor: pointer;	
+}
+.jceditor-dialog-div .table-fieldset  .jceditor-color-div  input {   
+    width:0px;
+    border:none;
+    background-color:#F4F4F4;
+    position: absolute;
+    top:0;left:2px;    
+    z-index:-1;
+ }
+ 
+.jceditor-dialog-div .table-fieldset   input {   
+    width:15px;
+    border:none;
+    background-color:white;
+    border:1px solid #ccc
+ }
+ 
+.jceditor-dialog-div .table-fieldset  .color-choice {   
+    position: relative;
+    list-style: none;
+    padding-top:10px;
+    overflow:hidden
+    
+ } 
+ 
+ .jceditor-dialog-div .table-fieldset  .color-choice li{
+ 	float:left;
+ 	padding-right:2px;
+ }
+
+.jceditor-dialog-div .table-fieldset  .color-choice  input {   
+    width:15px;
+    border:none;
+    background-color:#F4F4F4;
+    position: static;
+    left:-1px;    
+    z-index:10;
+ }
+.jceditor-dialog-div .table-fieldset  .color-choice  span {   
+    width:40px;
+    padding-top:4px;
+    *margin-top:-4px;
+    border:none;
+ }

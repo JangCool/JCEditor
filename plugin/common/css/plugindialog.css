@@ -1,0 +1,199 @@
+@CHARSET "UTF-8";
+/**
+*
+* 다이어 로그 팝업 기본틀을 잡는 CSS 이다.
+* 주로 사용될 FIELDSET 과 UL LI,TABLE,button 기본적으로 셋팅됌.
+* 플러그인 등록시 따로 css 만들어서 이용해도 되지만 일관된 레이아웃을 위하여 공통으로 나눔.
+*
+*/
+
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, 
+dt, dd, ol, ul, li,fieldset, form, label, legend,textarea,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {	margin: 0;	padding: 0;	border: 0;	font-size: 100%;	font: normal;	vertical-align: baseline;}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
+body {	line-height: 1;}
+ol, ul {	list-style: none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after,q:before, q:after {content: '';content: none;}
+table {	border-collapse: collapse;	border-spacing: 0;}
+
+.jceditor-dialog-div {
+		background:#F4F4F4;
+		width:365px;
+		height:220px;
+		color:#555;
+		font-size:10pt;
+		font-family:돋움
+}
+
+
+
+.jceditor-dialog-div .button,
+.jceditor-dialog-div .button button { position:relative; margin:0; display:inline-block; text-decoration:none !important; border:0; height:26px; *height:25px; font-size:10pt; line-height:23px; font-family:돋움; white-space:nowrap; background:url(http://naradesign.net/open_content/lecture/wp/img/button.gif) no-repeat; vertical-align:middle; color:#555;}
+.jceditor-dialog-div .button { padding:0; margin-right:2px; background-position:left top; }
+.jceditor-dialog-div .button button{ left:2px; overflow:visible; padding:0 10px 0 8px ;padding:0 10px 1px 8px \0; ;*padding:1px 10px 0 8px; background-position:right top; cursor:pointer; _vertical-align:top; }
+/*FireFox Browser*/
+@-moz-document url-prefix(){.jceditor-dialog-div .button button{padding:0 10px 6px 8px; }}
+
+
+.jceditor-dialog-div .button *:hover,
+.jceditor-dialog-div .button *:active,
+.jceditor-dialog-div .button *:focus{ color:#4297d7; }
+.jceditor-dialog-div .button *{ font-weight:bold !important;}
+
+.jceditor-dialog-div button {
+	border:0;
+	padding:0;
+	background:transparent;
+	cursor:pointer;
+	*overflow:visible;
+	width:80px;
+}
+
+
+
+
+.jceditor-dialog-div form{
+	width:0;
+	height:0;
+}
+
+.jceditor-dialog-div input {
+	background-color:#FFF;
+	border-bottom:1px inset #bbb;
+	border-right:1px inset #bbb;
+	border-top:1px solid #aaa;
+	border-left:1px solid #bbb;
+	width:80px;
+	height:18px;
+}
+
+
+.jceditor-dialog-div select {
+	background-color:#FFF;
+	border-bottom:1px inset #bbb;
+	border-right:1px inset #bbb;
+	border-top:1px solid #aaa;
+	border-left:1px solid #bbb;
+	height:20px;
+	width:82px;
+
+}
+.jceditor-dialog-div form {
+	width:0;
+	height:0;
+}
+
+.jceditor-dialog-div legend {
+	line-height:18px;
+	margin-left:10px;
+}
+.jceditor-dialog-div span {
+	line-height:18px;
+}
+.jceditor-dialog-div .titlebar-ul{
+	list-style: none;	display:block;
+	
+}
+
+.jceditor-dialog-div .titlebar-ul li{
+	float:left;
+	display:block;
+	height:26px;
+	border:0 none;
+	font-weight: bold;
+	color: #FFFFFF;
+	vertical-align: middle;
+}
+
+
+.jceditor-dialog-div .titlebar-ul .titlebar-center-li{
+	width:100%;
+	background-image:url(../../images/dialog/dialog_titlebar_center.gif); 
+}
+
+.jceditor-dialog-div .titlebar-ul .titlebar-center-li span{
+	line-height:24px;
+	margin-left:8px;
+}
+
+.jceditor-dialog-div .longinput {
+	width:244px;
+}
+
+
+.jceditor-dialog-div .hyperlinktable {
+	width:340px;	
+}
+
+.jceditor-dialog-div .hyperlinktable td{
+	height:25px;
+	*height:20px;
+}
+
+.jceditor-dialog-div .hyperlinkfieldset {
+	clear:both;
+	display:inline;
+	margin-top:12px;
+	margin-left:11px;
+	padding-bottom:10px;
+	*padding-bottom:5px;
+	padding-top:2px;
+	border:solid 1px #CCC;
+	line-height: 17px;
+	position:relative;
+	overflow:auto;
+	width:340px;
+	height:auto;
+}
+
+.jceditor-dialog-div .footerBtn-ul{
+	
+	list-style: none;
+	margin-top:15px;
+}
+
+.jceditor-dialog-div .footerBtn-ul li{
+	float:left;
+	display:block;
+	height:26px;
+	border:0 none;
+	font-weight: bold;
+	color: #FFFFFF;
+	vertical-align: middle;
+	width:50%;
+	*width:49%;
+		
+}
+
+.jceditor-dialog-div .footerBtn-ul .btnRight{
+	text-align:right;
+}
+
+.jceditor-dialog-div .footerBtn-ul .btnLeft{
+	text-align:left;
+}
+.jceditor-dialog-div .footerBtn-ul span{
+	margin-right:6px;
+	
+}
+
+
+.footerAlignButton-ul {
+    float: right;
+    position: relative;
+    left: -50%;    
+}
+.footerAlignButton-ul li{
+    float: left;
+    position: relative;
+    left: 50%;
+}
+

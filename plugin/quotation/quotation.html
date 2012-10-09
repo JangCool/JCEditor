@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta  charset="UTF-8" />
+<title>인용구</title>
+<link href="../common/css/plugindialog.css" rel="stylesheet" type="text/css" media=""/>
+<link href="css/quotation.css" rel="stylesheet" type="text/css" media=""/>
+<script src ="js/quotation.js"></script>
+</head>
+<body>
+<style>
+
+</style>
+
+<script>	
+</script>
+<form id="jce_plugin_popup">
+<div class="jceditor-dialog-div">
+<fieldset class="hyperlinkfieldset">
+
+<legend><span>종류</span></legend>
+	<ul class="quote-ul">
+		<li><label for="q1"><span onmouseover="this.className='quote-on'" onmouseout="this.className=''" style="background:url('images/quote_layer01.gif') no-repeat" ></span></label><input type="radio" name="quotoType" checked="checked" value="q1"  id="q1" onclick="setStyle()"></input></li>
+		<li><label for="q2"><span onmouseover="this.className='quote-on'" onmouseout="this.className=''" style="background:url('images/quote_layer02.gif') no-repeat" ></span></label><input type="radio" name="quotoType" value="q2" id="q2" onclick="setStyle()" ></li>
+		<li><label for="q3"><span onmouseover="this.className='quote-on'" onmouseout="this.className=''" style="background:url('images/quote_layer03.gif') no-repeat" ></span></label><input type="radio" name="quotoType" value="q3" id="q3"  onclick="setStyle()"></input></li>
+		<li><label for="q4"><span onmouseover="this.className='quote-on'" onmouseout="this.className=''" style="background:url('images/quote_layer05.gif') no-repeat" ></span></label><input type="radio" name="quotoType" value="q4"  id="q4" onclick="setStyle()"></input></li>
+		<li><label for="q5"><span onmouseover="this.className='quote-on'" onmouseout="this.className=''" style="background:url('images/quote_layer07.gif') no-repeat"></span></label><input type="radio" name="quotoType" value="q5"  id="q5" onclick="setStyle()"></input></li>
+		<li><label for="q6"><span onmouseover="this.className='quote-on'" onmouseout="this.className=''" style="background:url('images/quote_layer08.gif') no-repeat"></span></label><input type="radio" name="quotoType" value="q6" id="q6" onclick="setStyle()"></input></li>
+	</ul>
+</fieldset>
+
+
+
+<fieldset class="hyperlinkfieldset">
+<legend><span>색상</span></legend>
+<div  class="jceditor-color-div">
+<table>
+<tbody>
+	<tr>
+	  <td><label for="color1"><span class="color-on" style="background-color:#000000"></span></label><input type="radio" name="colorChoice" checked="checked" value="000000"  id="color1"  onclick="setColor()"/></td>
+	  <td><label for="color2"><span class="color-on" style="background-color:#993300" ></span></label><input type="radio" name="colorChoice"  value="993300" onclick="setColor()" id="color2" /></td>
+	  <td><label for="color3"><span class="color-on" style="background-color:#333300" ></span></label><input type="radio" name="colorChoice" value="333300" onclick="setColor()" id="color3" /></td>
+	  <td><label for="color4"><span class="color-on" style="background-color:#003300" ></span></label><input type="radio" name="colorChoice" value="003300"  onclick="setColor()" id="color4" /></td>
+	  <td><label for="color5"><span class="color-on" style="background-color:#003366"></span></label><input type="radio" name="colorChoice" value="003366"  onclick="setColor()" id="color5" /></td>
+	  <td><label for="color6"><span class="color-on" style="background-color:#000080" ></span></label><input type="radio" name="colorChoice"  value="000080"  onclick="setColor()" id="color6" /></td>
+	  <td><label for="color7"><span class="color-on" style="background-color:#333399" ></span></label><input type="radio" name="colorChoice" value="333399" onclick="setColor()" id="color7" /></td>
+	  <td><label for="color8"><span class="color-on" style="background-color:#333333" ></span></label><input type="radio" name="colorChoice" value="333333" onclick="setColor()" id="color8" /></td>
+	</tr>
+	<tr>
+	  <td><label for="color9"><span class="color-on" style="background-color:#800000"></span></label><input type="radio" name="colorChoice"  value="800000" onclick="setColor()" id="color9" /></td>
+	  <td><label for="color10"><span class="color-on" style="background-color:#FF6600"></span></label><input type="radio" name="colorChoice"  value="FF6600" onclick="setColor()" id="color10" /></td>
+	  <td><label for="color11"><span class="color-on" style="background-color:#808000"></span></label><input type="radio" name="colorChoice"  value="808000" onclick="setColor()" id="color11" /></td>
+	  <td><label for="color12"><span class="color-on" style="background-color:#008000"></span></label><input type="radio" name="colorChoice" value="008000" onclick="setColor()" id="color12" /></td>
+	  <td><label for="color13"><span class="color-on" style="background-color:#008080"></span></label><input type="radio" name="colorChoice" value="008080" onclick="setColor()" id="color13" /></td>
+	  <td><label for="color14"><span class="color-on" style="background-color:#0000FF"></span></label><input type="radio" name="colorChoice" value="0000FF"  onclick="setColor()" id="color14" /></td>
+	  <td><label for="color15"><span class="color-on" style="background-color:#666699"></span></label><input type="radio" name="colorChoice" value="666699" onclick="setColor()" id="color15" /></td>
+	  <td><label for="color16"><span class="color-on" style="background-color:#808080"></span></label><input type="radio" name="colorChoice" value="808080" onclick="setColor()" id="color16" /></td>
+	</tr>
+	<tr>	
+	  <td><label for="color17"><span class="color-on" style="background-color:#FF0000"></span></label><input type="radio" name="colorChoice"  value="FF0000" onclick="setColor()" id="color17" /></td>
+	  <td><label for="color18"><span class="color-on" style="background-color:#FF9900"></span></label><input type="radio" name="colorChoice"  value="FF9900" onclick="setColor()" id="color18" /></td>
+	  <td><label for="color19"><span class="color-on" style="background-color:#99CC00"></span></label><input type="radio" name="colorChoice" value="99CC00" onclick="setColor()" id="color19" /></td>
+	  <td><label for="color20"><span class="color-on" style="background-color:#339966"></span></label><input type="radio" name="colorChoice"  value="339966" onclick="setColor()" id="color20" /></td>
+	  <td><label for="color21"><span class="color-on" style="background-color:#33CCCC"></span></label><input type="radio" name="colorChoice" value="33CCCC" onclick="setColor()" id="color21" /></td>
+	  <td><label for="color22"><span class="color-on" style="background-color:#3366FF"></span></label><input type="radio" name="colorChoice"  value="3366FF"  onclick="setColor()" id="color22" /></td>
+	  <td><label for="color23"><span class="color-on" style="background-color:#800080"></span></label><input type="radio" name="colorChoice" value="800080" onclick="setColor()" id="color23" /></td>
+	  <td><label for="color24"><span class="color-on" style="background-color:#999999"></span></label><input type="radio" name="colorChoice" value="999999" onclick="setColor()" id="color24" /></td>
+	</tr>
+	<tr>
+	  <td><label for="color25"><span class="color-on" style="background-color:#FF00FF"></span></label><input type="radio" name="colorChoice"  value="FF00FF" onclick="setColor()" id="color25" /></td>
+	  <td><label for="color26"><span class="color-on" style="background-color:#FFCC00"></span></label><input type="radio" name="colorChoice"  value="FFCC00"  onclick="setColor()" id="color26" /></td>
+	  <td><label for="color27"><span class="color-on" style="background-color:#FFFF00"></span></label><input type="radio" name="colorChoice" value="00FF00" onclick="setColor()" id="color27" /></td>
+	  <td><label for="color28"><span class="color-on" style="background-color:#00FF00"></span></label><input type="radio" name="colorChoice" value="00FF00" onclick="setColor()" id="color28" /></td>
+	  <td><label for="color29"><span class="color-on" style="background-color:#00FFFF"></span></label><input type="radio" name="colorChoice"  value="00FFFF"  onclick="setColor()" id="color29" /></td>
+	  <td><label for="color30"><span class="color-on" style="background-color:#00CCFF"></span></label><input type="radio" name="colorChoice" value="00CCFF"  onclick="setColor()"  id="color30" /></td>
+	  <td><label for="color31"><span class="color-on" style="background-color:#993366"></span></label><input type="radio" name="colorChoice"  value="993366" onclick="setColor()" id="color31" /></td>
+	  <td><label for="color32"><span class="color-on" style="background-color:#C0C0C0"></span></label><input type="radio" name="colorChoice"  value="C0C0C0" onclick="setColor()" id="color32" /></td>
+	</tr>
+	<tr>	
+	  <td><label for="color33"><span class="color-on" style="background-color:#FF99CC"></span></label><input type="radio" name="colorChoice"  value="FF99CC" onclick="setColor()" id="color33" /></td>
+	  <td><label for="color34"><span class="color-on" style="background-color:#FFCC99"></span></label><input type="radio" name="colorChoice"  value="FFCC99" onclick="setColor()"  id="color34" /></td>
+	  <td><label for="color35"><span class="color-on" style="background-color:#FFFF99"></span></label><input type="radio" name="colorChoice"  value="FFFF99" onclick="setColor()" id="color35" /></td>
+	  <td><label for="color36"><span class="color-on" style="background-color:#CCFFCC"></span></label><input type="radio" name="colorChoice"  value="CCFFCC" onclick="setColor()" id="color36" /></td>
+	  <td><label for="color37"><span class="color-on" style="background-color:#CCFFFF"></span></label><input type="radio" name="colorChoice"  value="CCFFFF" onclick="setColor()" id="color37" /></td>
+	  <td><label for="color38"><span class="color-on" style="background-color:#99CCFF"></span></label><input type="radio" name="colorChoice"  value="99CCFF" onclick="setColor()"  id="color38" /></td>
+	  <td><label for="color29"><span class="color-on" style="background-color:#CC99FF"></span></label><input type="radio" name="colorChoice" value="CC99FF" onclick="setColor()" id="color39" /></td>
+	  <td><label for="color40"><span class="color-on" style="background-color:#FFFFFF"></span></label><input type="radio" name="colorChoice" value="FFFFFF" onclick="setColor()" id="color40" /></td>
+	</tr>
+</tbody>
+</table>
+
+
+<ul class="color-choice">
+	<li><input type="radio" name="colorType" checked="checked" value="bgcolor"  id="bgcolor" > </li>
+	<li>           
+	 <label for="bgcolor">  
+     <span >배경색</span>  
+    </label>  
+	</li>
+	<li><input type="radio" name="colorType" value="border" id="bordercolor" > </li>
+	<li>           
+	 <label for="bordercolor">  
+     <span>실선</span>  
+    </label>  
+	</li>
+</ul>
+</div>
+</fieldset>
+
+<fieldset class="hyperlinkfieldset border-choice-fieldset">
+<legend><span>선 두께</span></legend>
+<ul>
+	<li><label for="b1"><span onmouseover="this.className='border-on'" onmouseout="this.className=''" style="background:url('images/1px.gif') no-repeat"></span></label><input type="radio" name="borderType" checked="checked" value="1"  id="b1" onclick="setBorder()"></input></li>
+	<li><label for="b2"><span onmouseover="this.className='border-on'" onmouseout="this.className=''" style="background:url('images/2px.gif') no-repeat"></span></label><input type="radio" name="borderType"  value="2"  id="b2" onclick="setBorder()"></input></li>
+	<li><label for="b3"><span onmouseover="this.className='border-on'" onmouseout="this.className=''" style="background:url('images/3px.gif') no-repeat"></span></label><input type="radio" name="borderType"  value="3"  id="b3" onclick="setBorder()"></input></li>
+	<li><label for="b4"><span onmouseover="this.className='border-on'" onmouseout="this.className=''" style="background:url('images/4px.gif') no-repeat"></span></label><input type="radio" name="borderType"  value="4"  id="b4" onclick="setBorder()"></input></li>
+	<li><label for="b5"><span onmouseover="this.className='border-on'" onmouseout="this.className=''" style="background:url('images/5px.gif') no-repeat"></span></label><input type="radio" name="borderType"  value="6"  id="b5" onclick="setBorder()"></input></li>
+	<li><label for="b0"><span onmouseover="this.className='border-on'" onmouseout="this.className=''" style="background:url('images/0px.gif') no-repeat"></span></label><input type="radio" name="borderType"  value="0"  id="b0" onclick="setBorder()"></input></li>
+</ul>
+</fieldset>
+
+
+<fieldset style="background-color:white" class="hyperlinkfieldset">
+<legend><span>미리보기</span></legend>
+	<div class="jceditor-preview-div" id="preview"  align="center">
+     <BLOCKQUOTE style="BORDER-LEFT: #888 3px solid; HEIGHT:13px;MARGIN-TOP: 10px; PADDING-LEFT: 15px; FONT: 10pt 돋움; MARGIN-BOTTOM: 10px; MARGIN-LEFT: 35px;line-height: 100%"></BLOCKQUOTE>	
+	</div>
+</fieldset>
+<ul class="footerBtn-ul">
+<li class="btnRight"><span class="button"><button type="button" id="jce_confirm">확인</button></span></li>
+<li class="btnLeft"><span class="button"><button type="button" id="jce_cancel">취소</button></span></li>
+</ul>
+
+</div>
+</form>
+</body>
+</html>

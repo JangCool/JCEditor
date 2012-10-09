@@ -1,0 +1,223 @@
+@CHARSET "UTF-8";
+
+.jceditor-dialog-div{
+	width :273px;
+	height:410px;
+}
+.quote-ul{
+	width:230px;
+	height:40px;
+    position: relative;
+    list-style: none;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:2px;    
+    overflow:hidden
+    
+}
+
+
+/*FireFox Browser*/
+@-moz-document url-prefix(){.jceditor-quote-ul{margin-top:2px;margin-bottom:0px}}
+
+
+.quote-ul li{    
+    float: left;
+    position: relative;
+	padding-left : 2px;			
+}
+.quote-ul span
+{
+	width:34px;
+	height:34px;
+	display:block;
+	border:1px solid #ccc;
+	position:relative;;
+	cursor:pointer;
+}
+.quote-ul .quote-on{
+	border:1px solid red;
+}
+
+.quote-ul img
+{
+	border:1px solid #ccc;
+}
+.quote-ul  input {   
+    width:10px;
+    border:none;
+    background-color:#F4F4F4;
+    position:absolute;
+    top:0;
+    left:3px;
+    z-index:-1;
+ }
+
+.jceditor-dialog-div table
+{
+	position:relative;
+	width:229px;
+	height:40px;
+	border:1px solid white;
+	border-collapse: collapse;
+}
+
+
+
+.jceditor-dialog-div td {
+	width:12.5%;
+	border:1px solid white;
+}
+
+.jceditor-dialog-div .hyperlinkfieldset {
+	clear:both;
+	display:inline;
+	margin-top:10px;
+	margin-left:11px;
+	padding-bottom:10px;
+	*padding-top:2px;
+	border:solid 1px #CCC;
+	line-height: 17px;
+	position:relative;
+	overflow:auto;
+	width:250px;
+	height:auto;
+}
+
+.jceditor-dialog-div .middle-fieldset
+{      
+	margin:0;
+	padding:0;
+	list-style: none;	
+}
+.jceditor-dialog-div .middle-fieldset li
+{   
+	display:block;float:left ;	
+}
+
+.jceditor-dialog-div  .jceditor-color-div{
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:2px;    
+}
+
+.jceditor-dialog-div .jceditor-color-div span {
+	width:100%;
+	height:8px;
+	display:block;
+	cursor: pointer;	
+}
+.jceditor-dialog-div .jceditor-color-div  input {   
+    width:0px;
+    border:none;
+    background-color:#F4F4F4;
+    position: absolute;
+    top:0;left:2px;    
+    z-index:-1;
+ }
+ 
+.jceditor-dialog-div   input {   
+    width:15px;
+    border:none;
+    background-color:#F4F4F4
+ }
+ 
+.jceditor-dialog-div .color-choice {   
+    position: relative;
+    list-style: none;
+    padding-top:10px;
+    overflow:hidden
+    
+ } 
+ 
+ .jceditor-dialog-div .color-choice li{
+ 	float:left;
+ 	padding-right:2px;
+ }
+
+.jceditor-dialog-div .color-choice  input {   
+    width:15px;
+    border:none;
+    background-color:#F4F4F4;
+    position: static;
+    left:-1px;    
+    z-index:10;
+ }
+.jceditor-dialog-div .color-choice  span {   
+    width:40px;
+    padding-top:4px;
+    *margin-top:-4px;
+    
+    border:none;
+ }
+
+
+.jceditor-dialog-div .border-choice-fieldset{   
+    width:248px;
+    padding-top:2px;
+    overflow: hidden;
+    height:39px;
+}
+ 
+ /*FireFox Browser*/
+@-moz-document url-prefix(){.jceditor-dialog-div .border-choice-fieldset{  height:36px;}}
+
+ .jceditor-dialog-div .border-choice-fieldset ul{   
+    list-style: none;
+    padding-left:14px;
+    padding-right:10px;
+ }
+
+.jceditor-dialog-div .border-choice-fieldset ul span
+{
+	width:32px;
+	height:17px;
+	display:block;
+	border:1px solid #ccc;
+	position:relative;;
+	cursor:pointer;
+}
+
+.jceditor-dialog-div .border-choice-fieldset li{
+	float:left;
+ 	margin:0;
+ 	padding:0;
+    padding-top:2px; 	
+    height:20px;
+    padding-right:3px;
+    padding-bottom:3px;
+    _padding-bottom:0px;
+    position: relative;
+ }
+ 
+ .jceditor-dialog-div .border-choice-fieldset img{
+ 	margin:0;
+ 	padding:0;
+ 	border-spacing:0;
+ 	white-space:0;
+	border:1px solid #ccc;
+ }
+/*FireFox Browser*/
+@-moz-document url-prefix(){.jceditor-dialog-div .border-choice-fieldset{padding-bottom:13px;}}
+
+.jceditor-dialog-div .border-choice-fieldset  input {   
+    width:10px;
+    border:none;
+    background-color:#F4F4F4;
+    position:absolute;
+    top:0;
+    left:3px;
+    z-index:-1;
+ }
+
+.jceditor-dialog-div .border-choice-fieldset .border-on{
+	border:1px solid red;
+}
+.jceditor-preview-div{
+
+	width:248px;
+	height:25px;
+	*height:30px;
+	
+	vertical-align: middle;
+}

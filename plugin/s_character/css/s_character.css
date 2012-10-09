@@ -1,0 +1,94 @@
+@CHARSET "UTF-8";
+.jceditor-dialog-div {
+	margin:0;
+	width:385px;
+	height:320px;
+	background-color:#f4f4f4;
+	overflow: auto;	
+}
+
+.tabs {
+	margin :10px;
+	width:363px;
+	height:238px;
+	position:relative;
+}
+
+.tabs dt{
+	float:left;
+	background-color:#eee;
+	font-size:10pt;
+	font-family:돋움;
+	border:1px solid #d0d0d0;
+	border-bottom:0;
+	margin-left:2px;
+	height:20px;
+	position:relative;
+	z-index:2;
+} 
+
+.tabs dt a {
+	border-bottom:1px solid #d0d0d0;
+	color:gray;
+	display:block;
+	text-align:center;
+	text-decoration:none;
+	width:100px;
+}
+
+.tabs dt a span {
+	display:block;
+	padding-top:2px;
+	padding-left:4px;
+	padding-right:4px;	
+}
+
+
+
+.tabs  dd {
+	*left:0;
+	clear:right;
+	background-color:#d0d0d0;
+	display:block;
+	margin-top:1px;
+	position:absolute;
+	top:20px;
+	z-index:1;
+	width:100%;
+	overflow: hidden;
+}
+
+.tabs  dd span {
+}
+
+.tabs .tabs-content-each {
+	background-color:#fff;
+	margin:1px;
+	padding:.5px 0;
+}
+
+.tabs dt.active a {
+	background-color:#fff;
+	border-bottom:1px solid #fff;
+	color:#333;
+}
+
+.tabs dd.active {
+	display:block;
+}
+
+.tabs table{
+	border-collapse: separate;
+}
+
+.rollover-on {
+	padding:2px;
+	border:2px solid #509de4;
+}
+
+.rollover-off {
+	padding:2px;
+	border:2px solid white
+}
+
+</style>

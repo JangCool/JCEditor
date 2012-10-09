@@ -1,0 +1,102 @@
+<!DOCTYPE html >
+<html>
+<HEAD>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/JCEditor/jceditor_ui.css"></link>
+<script src="/JCEditor/jceditor.js"></script>
+<style>
+	li{float:left;padding:40px}
+</style>
+</head>
+<body>
+
+
+<div style="background-color:none;width:2000px;height:500px;" align="left">
+<h1>장쿨에디터 v1.0이 될 때까지 테스트..</li>
+</h1>
+<ul style="height:22px;float: left;">
+<li><textarea id="edit1">왜 또 갑자기 글 쓸때 느려지지??...</textarea><br /><input type="button" value="내용가져오기" onclick="getContent()"><input type="button" value="글자 길이" onclick="getContentLength()"></li>
+<li><textarea id="edit2"><span style="font-family: 돋움; font-size: 10pt;"><table style="border-collapse: collapse;" cellSpacing="0" cellPadding="0" width="100%"><tbody><tr><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td></tr><tr><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td></tr><tr><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td></tr><tr><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td></tr><tr><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td><td style="border: 1px solid rgb(204, 204, 204); height: 20px;"></td></tr></tbody></table></span></textarea>
+<br /><input type="button" value="내용가져오기" onclick="getContent2()"><input type="button" value="글자 길이" onclick="getContentLength2()">
+</li>
+</ul>
+</div>
+
+<h3>늘어나는 버그... 에러는 내 삶의 활력소...</h3>
+<span style="font-size: 8pt; font-family: 돋움; ">var editor = new JCEditor("edit1","400px","300px",{<br /><span class="Apple-tab-span" style="white-space: pre; ">	</span><br /><span class="Apple-tab-span" style="white-space: pre; ">		</span>hideGroup : {<br /><span class="Apple-tab-span" style="white-space: pre; ">			</span>groupA : true, &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // 버튼 그룹별로 안보이기<br /><span class="Apple-tab-span" style="white-space: pre; ">			</span>groupB : true,<br /><span class="Apple-tab-span" style="white-space: pre; ">			</span>groupC : true<br /><span class="Apple-tab-span" style="white-space: pre; ">		</span>},<br /><span class="Apple-tab-span" style="white-space: pre; ">		</span><br /><span class="Apple-tab-span" style="white-space: pre; ">		</span>hideButton : {<br /><span class="Apple-tab-span" style="white-space: pre; ">			</span>Outdent : <span class="Apple-tab-span" style="white-space: pre; ">		</span>true, &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// 해당하는 버튼만 안보이기<br /><span class="Apple-tab-span" style="white-space: pre; ">			</span>Indent : <span class="Apple-tab-span" style="white-space: pre; ">			</span>true<span class="Apple-tab-span" style="white-space: pre; ">		</span><br /><span class="Apple-tab-span" style="white-space: pre; ">		</span>},<br /><span class="Apple-tab-span" style="white-space: pre; ">		</span><br /><span class="Apple-tab-span" style="white-space: pre; ">		</span>enterMode : false, &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// 크롬 사파리때메... 구현중 포기.. 2주만의 쾌거...포기..<br /><span class="Apple-tab-span" style="white-space: pre; ">		</span>allowScript :true, &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // script 테그 허용.. false면 &lt;script&gt; 테그 제거<br /><span class="Apple-tab-span" style="white-space: pre; ">		</span>allowScriptValidateMessage :true &nbsp; &nbsp; &nbsp;//&amp;gt;script&amp;lt; 테그가 형식에 맞지 않으면 경고 메세지 출력.. ex)&amp;gt;script&amp;lt; &amp;gt;script&amp;lt; &amp;gt;/script&amp;lt;&nbsp;<br /><span class="Apple-tab-span" style="white-space: pre; ">	</span>});<br /><br /><span class="Apple-tab-span" style="white-space: pre; ">	</span>var editor2 = new JCEditor("edit2","400px","300px");</span><br><br><br><br>
+
+
+<script>
+
+	var editor = new JCEditor("edit1","400px","300px",	{
+	
+		hideGroup : {
+			groupA : false,                           // 버튼 그룹별로 안보이기
+			groupB : false,
+			groupC : true
+		},
+		
+		hideButton : {
+			Outdent : true,                  // 해당하는 버튼만 안보이기
+			Indent : true	
+		},
+		
+		enterMode : false,                          // 크롬 사파리때메... 구현중 포기.. 2주만의 쾌거...포기..
+		allowScript :true,                           // script 테그 허용.. false면 <script> 테그 제거
+		allowScriptValidateMessage :true,      //&gt;script&lt; 테그가 형식에 맞지 않으면 경고 메세지 출력.. ex)&gt;script&lt; &gt;script&lt; &gt;/script&lt; 
+				
+		pTagMargin :{								  //엔터키를 누르면 간격이 넓어지는 p테그를  br테그와 같은 간격으로  조절한다.
+			marginTop : 0,
+			marginBottom : 0
+		}		
+	});
+
+	function getContent(){
+		
+		alert(editor.getContent());
+	}
+	
+	function getContentLength(){
+		alert(editor.getContentLength());
+	}
+	
+	
+	var editor2 = new JCEditor("edit2","400px","300px",
+	{
+	
+		hideGroup : {
+			groupA : true,                           // 버튼 그룹별로 안보이기
+			groupB : true,
+			groupC : true
+		},
+		
+		hideButton : {
+			Outdent : true,                  // 해당하는 버튼만 안보이기
+			Indent : true	
+		},
+		
+		enterMode : false,                          // 크롬 사파리때메... 구현중 포기.. 2주만의 쾌거...포기..
+		allowScript :true,                           // script 테그 허용.. false면 <script> 테그 제거
+		allowScriptValidateMessage :true      //&gt;script&lt; 테그가 형식에 맞지 않으면 경고 메세지 출력.. ex)&gt;script&lt; &gt;script&lt; &gt;/script&lt; 
+				
+	//	pTagMargin :{								  //엔터키를 누르면 간격이 넓어지는 p테그를  br테그와 같은 간격으로  조절한다.
+	//		marginTop : 0,
+	//		marginBottom : 0
+	//	}		
+	});
+
+	function getContent2(){
+		
+		alert(editor2.getContent());
+	}
+	
+	function getContentLength2(){
+		alert(editor2.getContentLength());
+	}
+	
+</script>
+
+
+
+</body>
+</html>

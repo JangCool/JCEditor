@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta  charset="UTF-8" />
+<title>사진 </title>
+<link href="../common/css/plugindialog.css" rel="stylesheet" type="text/css" media=""/>
+  <link href="css/picture.css" rel="stylesheet" type="text/css" media=""/>
+</head>
+
+<script>
+	function sizeCheck(el){
+		
+		var width = document.getElementById("picture_width");
+		var height = document.getElementById("picture_height");
+		
+		
+		if (el.checked) {
+			width.disabled=false;
+			height.disabled=false;
+		}else{
+			width.disabled=true;
+			height.disabled=true;	
+			width.value="0";
+			height.value="0";
+		}
+	}
+	
+	function textNumberValidate(el){
+		
+		var re = /^[0-9]*$/ ;
+		if (!re.test(el.value)) {			
+			el.value="";
+			window.alert("숫자만 입력 가능 합니다");
+			return;
+		}		
+	}
+	
+	function preview(){
+			
+		if (urlValidation()) {
+			var previewImgEl = document.getElementById("preview_img");
+			previewImgEl.src = document.getElementById("pt_url").value;	
+		}
+	}
+	
+	function urlValidation(){
+		var urlRe =/^(https?):\/\/([a-z0-9-]+\.)+([a-z0-9]{2,4}.)*$/;
+		var fileRe =/\.(bmp|gif|png|jpg|jpeg)$/i;
+		
+		if (!fileRe.test(document.getElementById("pt_url").value)) {
+			window.alert("파일 확장자가 올바르지 않습니다. bmp,gif,png,jpg,jpeg 만 지원합니다. ");
+			return false;
+		}else if(!urlRe.test(document.getElementById("pt_url").value)){
+			window.alert("URL 형식이 올바르지 않습니다. ");
+			return false;
+		}else{		
+			return true;
+		}
+	}
+	
+	function radioValue(obj){
+		var value="";
+		
+		for ( var i = 0; i < obj.length; i++) {
+			obj[i].checked
+			
+			if (obj[i].checked) {
+				value = obj[i].value;
+			}			
+		}
+		
+		return value;
+	}
+	
+	/*
+	* 확인 버튼을 눌렀을 때 에디터에게 설정 값들을 반환 한다.
+	*/
+		
+	function editorInsert(){
+		
+		if (!urlValidation()) {		
+			return false;;
+		}
+		
+		var frm = document.getElementById("jce_plugin_popup");
+		var direction = radioValue(frm.pt_align);
+		var border = frm.pt_thick_select.value;
+		var width = frm.picture_width.value;
+		var height = frm.picture_height.value;
+		var url = frm.pt_url.value;
+		
+		return {
+			direction : direction,
+			border : border,
+			width : width,
+			height : height,
+			url : url
+		}		
+	}
+	
+	/**
+	*
+	* 에디터에서 초기화 시킬 수 있게 한다.
+	*
+	*/
+	
+	function pluginReset(){
+	
+		var obj = document.getElementById("jce_plugin_popup");
+		document.getElementById("preview_img").src="images/preview.gif";
+		obj.reset();	
+	}
+	
+</script>
+<body >
+
+<form id="jce_plugin_popup">
+<div class="jceditor-dialog-div">
+
+<div class="preview-div" >
+<div style="text-align:center;padding-top:18px;">
+<img id="preview_img" src="images/preview.gif"  class="preview-img"></img>
+</div>
+</div>
+<fieldset class="picture-fieldset">
+<legend>속성</legend>
+<dl>
+<dt class="lv1">정렬 : </dt>
+<dd class="align"><input type="radio" id="picture_left" name="pt_align"  class="radio_button"  value="left"><label for="picture_left" ><span class="align_left"></span></label></input></dd>
+<dd class="align"><input type="radio" id="picture_center" name="pt_align"  class="radio_button" value="center" checked="checked" ><label for="picture_center" ><span class="align_center"></span></label></input></dd>
+<dd class="align"><input type="radio" id="picture_right" name="pt_align"  class="radio_button" value="right"><label for="picture_right" ><span class="align_right"></span></label></input></dd>
+<dt class="lv2">두께 : </dt>
+<dd><select id="pt_thick_select">
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+</select></dd>
+</dl>
+<hr class="seperateline-div" ></hr>
+<dl>
+<dt class="lv1">가로 : </dt>
+<dd class="size"><input type="text" id="picture_width" name=""   value="0"  maxlength="4" class="text_input" onkeyup="textNumberValidate(this)" disabled ="disabled" /> px</dd>
+<dt class="lv3">세로 : </dt>
+<dd class="size"><input type="text" id="picture_height" name=""   value="0" maxlength="4" class="text_input"  onkeyup="textNumberValidate(this)" disabled="disabled" /> px</dd>
+<dt class="size_check"></dt>
+<dd><input type="checkbox" id="picture_height"  onclick="sizeCheck(this)" class="radio_button" > 크기</input> </dd>
+</dl>
+</fieldset>
+
+
+<fieldset class="picture-fieldset">
+<legend>주소</legend>
+<dl>
+<dt class="lv1">URL : </dt>
+<dd class="size"><input type="text" id="pt_url" name="pt_align"   value="http://" class="url_input" size="60" /> </dd>
+<dd class="preview_btn"><span><img src="images/preview_btn.gif" onclick="preview()" style="cursor:pointer"/></span></dd>
+</dl>
+</fieldset>
+<ul class="footerBtn-ul">
+<li class="btnRight"><span class="button"><button type="button" id="jce_confirm">등록하기</button></span></li>
+<li class="btnLeft"><span class="button"><button type="button" id="jce_cancel">취소</button></span></li>
+</ul>
+
+
+</div>
+</form>
+</body>
+</html> 

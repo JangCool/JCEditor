@@ -1,0 +1,150 @@
+@CHARSET "UTF-8";
+.jceditor-dialog-div {
+	margin:0;
+	width:365px;
+	height:500px;
+	background-color:#f4f4f4;
+	overflow: hidden;	
+}
+
+
+.jceditor-dialog-div .picture-fieldset{   
+	clear:both;
+	display:inline;
+	margin-top:12px;
+	margin-left:11px;
+	padding-bottom:10px;
+	*padding-bottom:5px;
+	padding-top:2px;
+	border:solid 1px #CCC;
+	line-height: 17px;
+	position:relative;
+	overflow:hidden;
+	width:340px;
+	height:auto;
+}
+.jceditor-dialog-div .preview-div{
+
+	margin-top:12px;
+	margin-left:11px;
+	width:340px;
+	height:240px;
+	border:solid 1px #CCC;	
+	vertical-align: middle;
+	text-align: center;
+
+}
+
+.jceditor-dialog-div .preview-div .preview-img {
+	
+	border:1px solid  #CCC;
+	max-width:300px;
+	width:auto !important;
+	width:300px;
+	
+	max-height: 200px;
+	height:auto !important;
+	height:200px;
+ 
+}
+
+.jceditor-dialog-div .picture-fieldset dl{
+	margin-left:11px;
+	margin-top:2px;
+	width:330px;
+}
+
+.jceditor-dialog-div .picture-fieldset dt{
+	float:left;
+	height:21px;
+	padding-top:1px;
+	
+}
+
+.jceditor-dialog-div .picture-fieldset .align_left {
+	display:inline-block;
+	background: url(../images/align_left.gif);
+	width:12px;
+	height:14px;
+}
+.jceditor-dialog-div .picture-fieldset .align_center{
+	display:inline-block;
+	background: url(../images/align_center.gif);
+	width:12px;
+	height:14px;
+}
+
+.jceditor-dialog-div .picture-fieldset .align_right {
+	display:inline-block;
+	background: url(../images/align_right.gif);
+	width:12px;
+	height:14px;
+}
+
+
+.jceditor-dialog-div .picture-fieldset .radio_button {
+    width:14px;
+    height:14px;
+    border:none;
+    background-color: #f4f4f4;
+}
+
+.jceditor-dialog-div .picture-fieldset .text_input {
+    width:40px;
+    height:14px;
+}
+
+.jceditor-dialog-div .picture-fieldset .url_input {
+    width:200px;
+    height:17px;
+}
+
+.jceditor-dialog-div .picture-fieldset .align{
+	float:left;
+	width:40px;	
+}
+
+.jceditor-dialog-div .picture-fieldset .size{
+	float:left;
+	width:70px;		
+}
+
+.jceditor-dialog-div .picture-fieldset  .preview_btn{
+	float:left;
+	_float:none;
+	display:block;
+	margin-left:140px;	
+}
+
+.jceditor-dialog-div .picture-fieldset  .size_check{
+	float:left;
+	margin-left:20px;
+}
+
+.jceditor-dialog-div .picture-fieldset .lv1{
+	float:left;
+	width:40px;	
+}
+
+
+.jceditor-dialog-div .picture-fieldset .lv2{	
+	margin-left:35px;
+	float:left;
+	width:40px;	
+}
+
+
+.jceditor-dialog-div .picture-fieldset .lv3{	
+	margin-left:20px;
+	float:left;
+	width:40px;	
+}
+
+
+
+
+.jceditor-dialog-div .picture-fieldset .seperateline-div{	
+	margin : 12px;
+	height:1px;
+	background-color:#ccc
+}

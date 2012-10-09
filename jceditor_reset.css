@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+.jceditor-wrap-div u, .jceditor-wrap-div span,.jceditor-wrap-div div,.jceditor-wrap-div object,.jceditor-wrap-div iframe,.jceditor-wrap-div h1,.jceditor-wrap-div h2,.jceditor-wrap-div h3,
+.jceditor-wrap-div h4,.jceditor-wrap-div h5,.jceditor-wrap-div h6,.jceditor-wrap-div p,.jceditor-wrap-div blockquote,.jceditor-wrap-div pre,.jceditor-wrap-div abbr,
+.jceditor-wrap-div acronym,.jceditor-wrap-div address,.jceditor-wrap-div big,.jceditor-wrap-div cite,.jceditor-wrap-div code,.jceditor-wrap-div del,.jceditor-wrap-div dfn,.jceditor-wrap-div em,
+.jceditor-wrap-div img,.jceditor-wrap-div ins,.jceditor-wrap-div kbd,.jceditor-wrap-div q,.jceditor-wrap-div s,.jceditor-wrap-div samp,.jceditor-wrap-div small,.jceditor-wrap-div strike,
+.jceditor-wrap-div strong,.jceditor-wrap-div sub,.jceditor-wrap-div sup,.jceditor-wrap-div tt,.jceditor-wrap-div var,.jceditor-wrap-div b,.jceditor-wrap-div u,.jceditor-wrap-div i,
+.jceditor-wrap-div center,.jceditor-wrap-div dl, .jceditor-wrap-div dt,.jceditor-wrap-div dd,.jceditor-wrap-div ol,.jceditor-wrap-div ul,.jceditor-wrap-div li,.jceditor-wrap-div fieldset,
+.jceditor-wrap-div form,.jceditor-wrap-div  label,.jceditor-wrap-div  legend,.jceditor-wrap-div table,.jceditor-wrap-div caption,
+.jceditor-wrap-div tbody,.jceditor-wrap-div tfoot,.jceditor-wrap-div thead,.jceditor-wrap-div tr,.jceditor-wrap-div th,.jceditor-wrap-div  td,.jceditor-wrap-div article,.jceditor-wrap-div aside,.jceditor-wrap-div canvas,.jceditor-wrap-div  details,.jceditor-wrap-div embed,
+.jceditor-wrap-div figure,.jceditor-wrap-div figcaption,.jceditor-wrap-div footer,.jceditor-wrap-div header,.jceditor-wrap-div hgroup,.jceditor-wrap-div menu,.jceditor-wrap-div nav,.jceditor-wrap-div output,.jceditor-wrap-div ruby,.jceditor-wrap-div section,
+.jceditor-wrap-div summary,.jceditor-wrap-div time,.jceditor-wrap-div mark,.jceditor-wrap-div audio,.jceditor-wrap-div textarea,
+.jceditor-wrap-div video {	margin: 0;	padding: 0;	border: 0;	font-size: 100%;	font: normal;	vertical-align: baseline;line-height:100%;word-spacing: 0;width:auto;height:auto;}
+/* HTML5 display-role reset for older browsers */
+.jceditor-wrap-div article,.jceditor-wrap-div aside,.jceditor-wrap-div details,.jceditor-wrap-div  figcaption,.jceditor-wrap-div figure,.jceditor-wrap-div footer,.jceditor-wrap-div header,
+.jceditor-wrap-div hgroup,.jceditor-wrap-div menu,.jceditor-wrap-div nav,.jceditor-wrap-div section {display: block;}
+.jceditor-wrap-div ol, ul {	list-style: none;}
+.jceditor-wrap-div  blockquote, q {quotes: none;}
+.jceditor-wrap-div  blockquote:before, blockquote:after,q:before, q:after {content: '';content: none;}
+.jceditor-wrap-div  table {	border-collapse: collapse;	border-spacing: 0;}

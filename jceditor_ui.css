@@ -1,0 +1,375 @@
+@CHARSET "UTF-8";
+@IMPORT url("/JCEditor/jceditor_reset.css");
+/** 	에디터 감싸는 div **/
+.jceditor-wrap-div {position:relative;display:inline-block;zoom:1;/*IE6,7*/*display:inline;/*IE6,7*/;}
+
+/** 에디터 구조잡기위한 테이블 div **/
+.jceditor-wrap-div .jceditor-container-table{word-wrap:break-word;word-break:break-container;table-layout:fixed;border: solid 1px #DDD;border-collapse: collapse;background-color: white;width:100%;height:500px}
+
+.jceditor-wrap-div .jceditor-toolbar-td {padding:6px;padding-top:7px;  background-color:#f7f7f7;z-index:1;}
+
+/** 	테이블 안에 툴바를 넣을 div **/
+
+.jceditor-wrap-div .jceditor-toolBarWrap-div{background-color:#f7f7f7; word-wrap:break-word;word-break:break-container;width:100%; height:auto;overflow:hidden; font-size: 11px;line-height: 8px}
+.jceditor-wrap-div .jceditor-toolBarWrap-div  li, img {height:21px;float: left;}	
+
+/*FireFox Browser*/
+.jceditor-wrap-div .jceditor-toolBarWrap-div  li, img , x:-moz-any-link, x:default {height:20px;*height:21px; float: left;}	
+
+
+/** 	툴바에 들어갈 메뉴들을 구분하기 위한 ul  **/
+
+.jceditor-wrap-div .jceditor-toolBarWrap-div .jceditor-group-ul{padding: 2px; padding-right:4px;_padding-right:4px;	display: inline-block;*zoom:1;/*IE6,7*/*display:inline;/*IE6,7*/;text-align: left}
+/*opera Browser Hack*/
+@media all and (-webkit-min-device-pixel-ratio:10000), not all and (-webkit-min-device-pixel-ratio:0) 
+{.jceditor-wrap-div .jceditor-toolBarWrap-div .jceditor-group-ul{padding-right:4px;}}
+/*Chrome ,Safari Browser*/
+@media screen and (-webkit-min-device-pixel-ratio:0)
+{.jceditor-wrap-div .jceditor-toolBarWrap-div .jceditor-group-ul{padding-right:4px;}}
+/*FireFox Browser*/
+.jceditor-wrap-div .jceditor-toolBarWrap-div .jceditor-group-ul, x:-moz-any-link, x:default {padding-right:4px; *padding-right:4px;}
+
+/** 	툴바와 아래 컨텐츠와의 경계선 **/
+
+.jceditor-wrap-div .jceditor-shadowLine-div{background-image:url('/JCEditor/images/top_shadow_line.gif');background-repeat:repeat-x ;height:4px}
+
+/** 	아이프레임과 TextArea가 들어갈 컨텐츠 항목. **/
+
+.jceditor-wrap-div .jceditor-content-td{height:100%;background-color:#FFF}
+.jceditor-wrap-div .jceditor-contentWrap-div{position:relative;z-index:0;}
+
+/** 	컨텐츠 항목에 들어갈 TextArea **/
+
+.jceditor-wrap-div .jceditor-content-textarea{resize:none; vertical-align: baseline; width:100%; overflow:auto;border:0 none;display:none;font-size:12px;font-family: 돋움;border-spacing: 0;}
+
+/** 	컨텐츠 항목에 들어갈 iframe **/
+
+.jceditor-wrap-div .jceditor-content-iframe{border:0px none ;width:100%; overflow:auto;display:block;font-size: 10px;font-family: 돋움;word-wrap:break-word;word-break:break-container;}
+
+/** 	구글 크롬에서 드래그 하면 아이프레임에 마우스가 먹히는(사라지느현상) 증상 방지. **/
+
+.jceditor-wrap-div .jceditor-dragBlock-div{position:absolute;bottom:0;  border:0px none ;bottom:5px; right:5px; width:500px;height:500px;background-position:right; ;vertical-align:bottom;display:none;}
+
+/** 	컨텐츠 크기를 자유자재로 늘리는 drag div**/
+
+.jceditor-wrap-div .jceditor-dragResize-td{background-color:#FFF;}
+.jceditor-wrap-div .jceditor-dragResize-div{position:relative;  bottom:0; right:0; width:25px;height:14px;background-image:url('/JCEditor/images/ico_drag_resize.gif') ;background-repeat:no-repeat;background-position:right; cursor: se-resize;vertical-align:bottom;float:right;}
+
+
+
+
+/** 	메뉴항목에서 select 형식으로 보여줄 Button style 각 브라우져마다 보이는 방식이 틀려 핵으로 돌림 **/
+.jceditor-wrap-div .jceditor-group-ul  span {display:block; height:21px; margin:0; padding:0; border:0; font-size:0;}
+.jceditor-wrap-div .jceditor-group-ul  button::-moz-focus-inner {border: 0; padding: 0;padding-top:0px}/*Firefox button패딩 초기화 핵.*/
+.jceditor-wrap-div .jceditor-group-ul  button {font-family: 굴림;margin:0;padding:0;text-align:left;line-height:20px;_line-height:17px;height:21px;border:0; background:none; cursor:pointer;overflow:visible; font-size:9pt;padding-left:4px;padding-top:1px;*padding-top:1px;_padding-top:3px;}
+.jceditor-wrap-div .jceditor-group-ul  button span {overflow:hidden; position:absolute; top:0; left:0; width:0; height:0; margin:0; padding:0; visibility:hidden;}
+
+
+/**  스타일 버튼 선택시 나오는 DropDown div **/
+
+.jceditor-wrap-div .jceditor-selectFormatBlockList-ul {margin-left:0px;position:absolute;border:solid 1px #d9d9d9;padding:4px;width:180px;background-color:#ffffff;z-index:1;display:block}
+.jceditor-wrap-div .jceditor-selectFormatBlockList-ul li {line-height:100%; height:100%;width:176;}
+.jceditor-wrap-div .jceditor-selectFormatBlockList-ul span {display: inline-block;*zoom:1;/*display:inline;/*IE6,7*/;padding:2px; line-height:100%;;vertical-align: middle;font-size:100%;height:100%;font-family:돋움 }
+.jceditor-wrap-div .jceditor-selectFormatBlockList-ul h1 {height:100%;font-size:24pt;width:174px;padding-top:3px;padding-bottom:3px;}
+.jceditor-wrap-div .jceditor-selectFormatBlockList-ul h2 {height:100%;font-size:18pt;width:174px;padding-top:3px;padding-bottom:3px;}
+.jceditor-wrap-div .jceditor-selectFormatBlockList-ul h3 {height:100%;font-size:14pt;width:174px;padding-top:3px;padding-bottom:3px;}
+.jceditor-wrap-div .jceditor-selectFormatBlockList-ul h4 {height:100%;font-size:12pt;width:174px;padding-top:3px;padding-bottom:3px;}
+.jceditor-wrap-div .jceditor-selectFormatBlockList-ul h5 {height:100%;font-size:10pt;width:174px;padding-top:3px;padding-bottom:3px;}
+.jceditor-wrap-div .jceditor-selectFormatBlockList-ul h6 {height:100%;font-size:8pt;width:174px;padding-top:3px;padding-bottom:3px;}
+.jceditor-wrap-div .jceditor-selectFormatBlockList-ul address {height:100%;font-size:10pt;width:174px;padding-top:3px;padding-bottom:3px;}
+.jceditor-wrap-div .jceditor-selectFormatBlockList-ul p {height:100%;font-size:10pt;width:174px;padding-top:3px;padding-bottom:3px;}
+.jceditor-wrap-div .jceditor-selectFormatBlockList-ul pre {height:100%;font-size:10pt;width:174px;padding-top:3px;padding-bottom:3px;}
+
+/**  글꼴 버튼 선택시 나오는 DropDown div **/
+
+.jceditor-wrap-div .jceditor-selectFontFamilyList-ul {margin-left:0px;position:absolute;border:solid 1px #d9d9d9;padding:4px;width:150px;font-family:돋움;background-color:#ffffff;z-index:1;display:block;}
+.jceditor-wrap-div .jceditor-selectFontFamilyList-ul li {height: 100%; line-height:16px; width:146px;;padding-top:2px;_padding-top:3px;/*IE6*/}
+.jceditor-wrap-div .jceditor-selectFontFamilyList-ul span {height: 100%; line-height:18px;_line-height:16px; width:146px;;padding-top:0px;_padding-top:1px;/*IE6*/;font-size:9pt}
+
+/**  글자색 버튼 선택시 나오는 DropDown div **/
+
+.jceditor-wrap-div .jceditor-selectFontSizeList-ul {margin-left:0px;position:absolute;border:solid 1px #d9d9d9;padding:4px;width:352px;background-color:#ffffff;z-index:1;display:block}
+.jceditor-wrap-div .jceditor-selectFontSizeList-ul li {line-height:100%; height:100%;width:348px;}
+.jceditor-wrap-div .jceditor-selectFontSizeList-ul span {display: inline-block;*zoom:1;/*display:inline;/*IE6,7*/;padding:2px; line-height:100%;;vertical-align: middle;font-size:100%;height:100%;font-family:돋움 }
+
+
+/**  DropDown 메뉴에 마우스로 움직일 시 롤오버 **/
+
+.jceditor-wrap-div .jceditor-selectFont-on {border:solid 1px #AAD5FF;padding-left:3px;cursor:pointer;background-color:#F7FBFF;}
+.jceditor-wrap-div .jceditor-selectFont-off {;border:solid 1px #ffffff;padding-left:3px;cursor:pointer;height:100%}
+
+/** 글자색과 글자배경색을 지정하기위한 팔레트 css **/
+ 
+
+.jceditor-wrap-div .jceditor-color-palate{width:114px;	height:160px;	*height:160px;_height:161px;border: solid 1px #d9d9d9;	position: absolute;	overflow:visible;	background-color: white;	z-index:1000;display:block}
+.jceditor-wrap-div .jceditor-color-palate table{	margin-top :5px;	margin-left : 5px;	width:105px; border-collapse: collapse;border-spacing:0px; 	position:relative;}
+
+.jceditor-wrap-div .jceditor-color-palate .jceditor-top-tr td{margin:0px;padding:0px;_padding-top:1px;	height:35px;font-family:돋움;vertical-align: middle}
+
+.jceditor-wrap-div .jceditor-color-palate .jceditor-top-tr div{z-index: 2 ;font-size: 10pt}
+/*FireFox Browser*/
+@-moz-document url-prefix(){.jceditor-wrap-div .jceditor-color-palate .jceditor-top-tr div {margin-top:-1px}}
+
+
+.jceditor-wrap-div .jceditor-color-palate .jceditor-color-tr td{margin:0px;padding:0px;padding-left:1px;width:13px;height:13px;line-height: 0;font-size:0;}
+@media screen and (-webkit-min-device-pixel-ratio:0)
+{.jceditor-wrap-div .jceditor-color-palate .jceditor-color-tr td	{margin:0px;padding:0px;	padding-left:2px}}
+
+
+.jceditor-wrap-div .jceditor-color-palate .jceditor-bottom-tr fieldset {margin-top:-1px ;padding-top:1px;*padding-top:3px;width:102px;height:41px;*height:39px;_height:40px;border:solid 1px #CCC;line-height: 17px;}
+.jceditor-wrap-div .jceditor-color-palate .jceditor-bottom-tr legend {*margin-top:-4px;_margin_top:-2px;margin-left:26px;*margin-left:19px;font-size:9pt;line-height:17px}
+
+
+.jceditor-wrap-div .jceditor-color-palate a{	width:8px;height:8px; position:relative;display:block;font-size: 0;cursor:pointer}
+
+.jceditor-wrap-div .jceditor-color-palate .on{border-color: red}
+.jceditor-wrap-div .jceditor-color-palate .off{border-color: gray}
+
+/** 팔레트에 마우스 가져가면 큰 색으로 보여주는 상단 div **/
+
+.jceditor-wrap-div .jceditor-color-palate .jceditor-textcolor-div{	;width:102px;height:22px;border:solid 1px #CCC;text-align: center;}
+.jceditor-wrap-div .jceditor-color-palate .jceditor-textcolor-div div{line-height:26px;line-height:25px \0;/*IE8*/*line-height:24px;_line-height:22px;}
+
+/** 팔레트에 마우스 가져가면 글자 배경색을 보여주는 div **/
+
+.jceditor-wrap-div .jceditor-color-palate .jceditor-textview-div{line-height: 100%;*line-height:20px;margin-top:2px;*margin-top:0px;_margin-top:1px;vertical-align:middle;;text-align: center;font-size: 9pt;font-family: 돋움}
+
+.jceditor-wrap-div  .jceditor-dialog-div {
+		margin:0;
+		padding:0;
+		background:#F4F4F4;
+		width:365px;
+		height:250px;
+		border:1px solid #4297d7;				
+		/* fixed를 한뒤 left, top을 50% 지정 */
+		position: absolute ; top: 50%; left: 50%; 
+		/* 너비와 높이의 절반값을 각각 margin-left와 margin-top의 음수로 지정 */
+		margin-left: -182px;margin-top: -125px; 
+		display:none; 
+		padding:0; 
+		z-index:500; 		
+		font-weight: bold;
+		font-family: 돋움;
+		color: white	; 
+		font-size: 10pt;
+}
+
+
+.jceditor-wrap-div .jceditor-dialog-div .titlebar-ul .titlebar-center-li{
+	width:100%;
+	height:26px;
+	background-image:url(/JCEditor/images/dialog/dialog_titlebar_center.gif); 
+}
+
+.jceditor-wrap-div .jceditor-dialog-div .titlebar-ul .titlebar-center-li span{
+	line-height:26px;
+	margin-left:8px;
+	font-size:10pt;
+}
+
+.jceditor-wrap-div .jceditor-contextmenu-div{
+	position:absolute;
+	display:none;
+	top:0;
+	left:0;
+	z-index:1000;
+}
+
+.jceditor-wrap-div .jceditor-contextmenu-div .jceditor-contextmenu-ul{
+	margin-left:0px;
+	position:absolute;
+	border:solid 1px #d9d9d9;
+	padding:4px;
+	width:140px;
+	background-color:#ffffff;
+	z-index:1;
+	display:block
+
+}
+.jceditor-wrap-div .jceditor-contextmenu-div .jceditor-contextmenu-ul li {line-height:100%; height:100%;width:136px;clear:both;display:block}
+.jceditor-wrap-div .jceditor-contextmenu-div .jceditor-contextmenu-ul span {display: inline-block;*zoom:1;/*display:inline;/*IE6,7*/;padding:2px; line-height:100%;;vertical-align: middle;font-size:100%;height:100%;font-family:돋움;font-size:10pt }
+
+
+/*버튼 모음.*/
+
+.jceditor-wrap-div   .jceditor-formatblock-btn{width:65px;}
+.jceditor-wrap-div   .jceditor-formatblock-btn-off{width:65px; background:url(/JCEditor/images/btnset.gif) -0px -63px no-repeat; }
+.jceditor-wrap-div   .jceditor-formatblock-btn-on{width:65px; background:url(/JCEditor/images/btnset.gif) -0px -84px no-repeat; }
+.jceditor-wrap-div   .jceditor-formatblock-btn-disabled{width:65px; background:url(/JCEditor/images/btnset.gif) -0px -105px no-repeat; }
+
+
+.jceditor-wrap-div   .jceditor-fontfamily-btn{width:70px;}
+.jceditor-wrap-div   .jceditor-fontfamily-btn-off{width:70px; background:url(/JCEditor/images/btnset.gif) -65px -63px no-repeat; }
+.jceditor-wrap-div   .jceditor-fontfamily-btn-on{width:70px; background:url(/JCEditor/images/btnset.gif) -65px -84px no-repeat; }
+.jceditor-wrap-div   .jceditor-fontfamily-btn-disabled{width:70px; background:url(/JCEditor/images/btnset.gif) -65px -105px no-repeat; }
+
+.jceditor-wrap-div   .jceditor-fontsize-btn{width:45px;}
+.jceditor-wrap-div   .jceditor-fontsize-btn-off{width:45px; background:url(/JCEditor/images/btnset.gif) -135px -63px no-repeat; }
+.jceditor-wrap-div   .jceditor-fontsize-btn-on{width:45px;background:url(/JCEditor/images/btnset.gif) -135px -84px no-repeat; }
+.jceditor-wrap-div   .jceditor-fontsize-btn-disabled{width:45px;background:url(/JCEditor/images/btnset.gif) -135px -105px no-repeat; }
+
+.jceditor-wrap-div   .jceditor-default-btn{width:21px;}
+
+.jceditor-wrap-div .jceditor-bold-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -180px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-bold-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -180px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-bold-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -180px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-underline-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -201px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-underline-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -201px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-underline-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -201px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-italic-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -222px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-italic-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -222px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-italic-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -222px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-strikethrough-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -243px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-strikethrough-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -243px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-strikethrough-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -243px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-forecolor-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -264px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-forecolor-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -264px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-forecolor-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -264px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-backcolor-btn-off {width:22px; background:url(/JCEditor/images/btnset.gif) -285px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-backcolor-btn-on {width:22px; background:url(/JCEditor/images/btnset.gif) -285px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-backcolor-btn-disabled {width:22px; background:url(/JCEditor/images/btnset.gif) -285px -105px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-justifyleft-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -307px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-justifyleft-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -307px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-justifyleft-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -307px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-justifycenter-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -328px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-justifycenter-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -328px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-justifycenter-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -328px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-justifyright-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -349px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-justifyright-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -349px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-justifyright-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -349px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-justifyfull-btn-off {width:22px; background:url(/JCEditor/images/btnset.gif) -370px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-justifyfull-btn-on {width:22px; background:url(/JCEditor/images/btnset.gif) -370px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-justifyfull-btn-disabled {width:22px; background:url(/JCEditor/images/btnset.gif) -370px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-insertorderedlist-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -392px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-insertorderedlist-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -392px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-insertorderedlist-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -392px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-insertunorderedlist-btn-off {width:22px; background:url(/JCEditor/images/btnset.gif) -413px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-insertunorderedlist-btn-on {width:22px; background:url(/JCEditor/images/btnset.gif) -413px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-insertunorderedlist-btn-disabled {width:22px; background:url(/JCEditor/images/btnset.gif) -413px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-outdent-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -435px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-outdent-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -435px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-outdent-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -435px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-indent-btn-off {width:22px; background:url(/JCEditor/images/btnset.gif) -456px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-indent-btn-on {width:22px; background:url(/JCEditor/images/btnset.gif) -456px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-indent-btn-disabled {width:22px; background:url(/JCEditor/images/btnset.gif) -456px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-html-btn-off {width:32px; background:url(/JCEditor/images/btnset.gif) -478px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-html-btn-on {width:32px; background:url(/JCEditor/images/btnset.gif) -478px -84px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-new-btn-off {width:22px; background:url(/JCEditor/images/btnset.gif) -0px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-new-btn-on {width:22px; background:url(/JCEditor/images/btnset.gif) -0px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-new-btn-disabled {width:22px; background:url(/JCEditor/images/btnset.gif) -0px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-undo-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -22px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-undo-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -22px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-undo-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -22px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-redo-btn-off {width:22px; background:url(/JCEditor/images/btnset.gif) -43px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-redo-btn-on {width:22px; background:url(/JCEditor/images/btnset.gif) -43px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-redo-btn-disabled {width:22px; background:url(/JCEditor/images/btnset.gif) -43px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-cut-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -65px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-cut-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -65px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-cut-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -65px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-copy-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -86px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-copy-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -86px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-copy-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -86px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-paste-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -107px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-paste-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -107px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-paste-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -107px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-selectall-btn-off {width:22px; background:url(/JCEditor/images/btnset.gif) -128px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-selectall-btn-on {width:22px; background:url(/JCEditor/images/btnset.gif) -128px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-selectall-btn-disabled {width:22px; background:url(/JCEditor/images/btnset.gif) -128px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-subscript-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -150px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-subscript-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -150px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-subscript-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -150px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-superscript-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -171px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-superscript-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -171px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-superscript-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -171px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-removeformat-btn-off {width:22px; background:url(/JCEditor/images/btnset.gif) -192px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-removeformat-btn-on {width:22px; background:url(/JCEditor/images/btnset.gif) -192px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-removeformat-btn-disabled {width:22px; background:url(/JCEditor/images/btnset.gif) -192px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-quotation-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -214px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-quotation-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -214px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-quotation-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -214px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-emoticon-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -235px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-emoticon-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -235px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-emoticon-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -235px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-scharacter-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -256px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-scharacter-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -256px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-scharacter-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -256px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-table-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -277px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-table-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -277px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-table-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -277px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-picture-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -298px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-picture-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -298px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-picture-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -298px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-flash-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -319px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-flash-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -319px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-flash-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -319px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-horizon-btn-off {width:22px; background:url(/JCEditor/images/btnset.gif) -340px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-horizon-btn-on {width:22px; background:url(/JCEditor/images/btnset.gif) -340px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-horizon-btn-disabled {width:22px; background:url(/JCEditor/images/btnset.gif) -340px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-createlink-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -362px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-createlink-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -362px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-createlink-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -362px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-unlink-btn-off {width:22px; background:url(/JCEditor/images/btnset.gif) -383px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-unlink-btn-on {width:22px; background:url(/JCEditor/images/btnset.gif) -383px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-unlink-btn-disabled {width:22px; background:url(/JCEditor/images/btnset.gif) -383px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-printline-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -405px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-printline-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -405px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-printline-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -405px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-preview-btn-off {width:21px; background:url(/JCEditor/images/btnset.gif) -426px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-preview-btn-on {width:21px; background:url(/JCEditor/images/btnset.gif) -426px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-preview-btn-disabled {width:21px; background:url(/JCEditor/images/btnset.gif) -426px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-print-btn-off {width:22px; background:url(/JCEditor/images/btnset.gif) -447px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-print-btn-on {width:22px; background:url(/JCEditor/images/btnset.gif) -447px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-print-btn-disabled {width:22px; background:url(/JCEditor/images/btnset.gif) -447px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-fullscreen-btn-off {width:22px; background:url(/JCEditor/images/btnset.gif) -469px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-fullscreen-btn-on {width:22px; background:url(/JCEditor/images/btnset.gif) -469px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-fullscreen-btn-disabled {width:22px; background:url(/JCEditor/images/btnset.gif) -469px -42px no-repeat; }
+

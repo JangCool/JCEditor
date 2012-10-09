@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta  charset="UTF-8" />
+<title>사진 </title>
+<link href="../common/css/plugindialog.css" rel="stylesheet" type="text/css" media=""/>
+<link href="css/flash.css" rel="stylesheet" type="text/css" media=""/>
+<script src="js/flash.js"></script>
+</head>
+<body >
+
+<script>
+
+
+	function modeChange(){
+		var frm = document.getElementById("jce_plugin_popup");
+		var modeValue = radioValue(frm.mode);
+		
+		if (modeValue=="object") {
+			frm.fl_object.style.display="block";
+			frm.fl_attribute.style.display="none";
+			frm.fl_address.style.display="none";
+			var previewEl = document.getElementById("preview").innerHTML="<img id=\"preview_img\" src=\"images/preview.gif\"  class=\"preview-img\"></img>";
+			
+		}else{
+			frm.fl_object.style.display="none";
+			frm.fl_attribute.style.display="block";
+			frm.fl_address.style.display="block";
+		}	
+	}
+	
+	
+	function objectPreview(){
+		var preview  = document.getElementById("preview");
+		preview.innerHTML = document.getElementById("fl_textarea").value;
+		var object = preview.getElementsByTagName("object");
+
+		if(object[0] &&object[0].tagName.toUpperCase() =="OBJECT" ){
+			for(var i = 0 ; i < object.length; i++){
+				preview.getElementsByTagName("object")[i].width="300";
+				preview.getElementsByTagName("object")[i].height="200";	
+			}
+		}else{
+			window.alert("OBJECT 테그만 가능 합니다.");
+			var previewEl = document.getElementById("preview").innerHTML="<img id=\"preview_img\" src=\"images/preview.gif\"  class=\"preview-img\"></img>";
+			
+			return;
+		}
+	}
+</script>
+
+<form id="jce_plugin_popup">
+<div class="jceditor-dialog-div">
+
+<div class="preview-div" >
+<div style="text-align:center;padding-top:18px;" id="preview">
+<img id="preview_img" src="images/preview.gif"  class="preview-img"></img>
+</div>
+</div>
+
+<fieldset class="flash-fieldset">
+<legend>모드</legend>
+<ul>
+<li class="mode"><input type="radio" id="fl_mode_url" name="mode"  class="radio_button"  value="url" checked="checked" onclick="modeChange()"><label for="fl_mode_url" ><span>URL</span></label></input></li>
+<li class="mode"><input type="radio" id="fl_mode_object" name="mode"  class="radio_button"  value="object" onclick="modeChange()"><label for="fl_mode_object" ><span>OBJECT 코드</span></label></input></li>
+</ul>
+</fieldset>
+
+<fieldset class="flash-fieldset" id="fl_attribute">
+<legend>속성</legend>
+<dl>
+<dt class="lv1">정렬 : </dt>
+<dd class="align"><input type="radio" id="flash_left" name="pt_align"  class="radio_button"  value="left"><label for="flash_left" ><span class="align_left"></span></label></input></dd>
+<dd class="align"><input type="radio" id="flash_center" name="pt_align"  class="radio_button" value="center" checked="checked" ><label for="flash_center" ><span class="align_center"></span></label></input></dd>
+<dd class="align"><input type="radio" id="flash_right" name="pt_align"  class="radio_button" value="right"><label for="flash_right" ><span class="align_right"></span></label></input></dd>
+<dt class="lv2">두께 : </dt>
+<dd><select id="fl_thick_select">
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+</select></dd>
+</dl>
+<hr class="seperateline-div" ></hr>
+<dl>
+<dt class="lv1">가로 : </dt>
+<dd class="size"><input type="text" id="fl_width" name=""   value="0"  maxlength="4" class="text_input" onkeyup="textNumberValidate(this)" disabled ="disabled" /> px</dd>
+<dt class="lv3">세로 : </dt>
+<dd class="size"><input type="text" id="fl_height" name=""   value="0" maxlength="4" class="text_input"  onkeyup="textNumberValidate(this)" disabled="disabled" /> px</dd>
+<dt class="size_check"></dt>
+<dd><input type="checkbox" id="flash_height"  onclick="sizeCheck(this)" class="radio_button" > 크기</input> </dd>
+</dl>
+</fieldset>
+
+
+<fieldset class="flash-fieldset" id="fl_address">
+<legend>주소</legend>
+<dl>
+<dt class="lv1">URL : </dt>
+<dd class="size"><input type="text" id="fl_url"   value="http://" class="url_input" size="60" /> </dd>
+<dd class="preview_btn"><span><img src="images/preview_btn.gif" onclick="preview()" style="cursor:pointer" border="0" /></span></dd>
+</dl>
+</fieldset>
+<fieldset class="flash-fieldset" id="fl_object"  style="display:none">
+<legend>OBJECT 코드</legend>
+<textarea id="fl_textarea" class="flash_textarea" ></textarea>
+<ul class="footerAlignButton-ul">
+<li><span><img src="images/preview_btn.gif" onclick="objectPreview()" style="cursor:pointer" border="0" /></span></li>
+</ul>
+
+</fieldset>
+<ul class="footerBtn-ul">
+<li class="btnRight"><span class="button"><button type="button" id="jce_confirm">등록하기</button></span></li>
+<li class="btnLeft"><span class="button"><button type="button" id="jce_cancel">취소</button></span></li>
+</ul>
+
+</div>
+</form>
+</body>
+</html> 

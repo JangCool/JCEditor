@@ -1,0 +1,653 @@
+<!DOCTYPE html >
+<html>
+<HEAD>
+<meta charset="UTF-8">
+<style>
+.jceditor-wrap-div u, .jceditor-wrap-div span,.jceditor-wrap-div div,.jceditor-wrap-div object,.jceditor-wrap-div iframe,.jceditor-wrap-div h1,.jceditor-wrap-div h2,.jceditor-wrap-div h3,
+.jceditor-wrap-div h4,.jceditor-wrap-div h5,.jceditor-wrap-div h6,.jceditor-wrap-div p,.jceditor-wrap-div blockquote,.jceditor-wrap-div pre,.jceditor-wrap-div abbr,
+.jceditor-wrap-div acronym,.jceditor-wrap-div address,.jceditor-wrap-div big,.jceditor-wrap-div cite,.jceditor-wrap-div code,.jceditor-wrap-div del,.jceditor-wrap-div dfn,.jceditor-wrap-div em,
+.jceditor-wrap-div img,.jceditor-wrap-div ins,.jceditor-wrap-div kbd,.jceditor-wrap-div q,.jceditor-wrap-div s,.jceditor-wrap-div samp,.jceditor-wrap-div small,.jceditor-wrap-div strike,
+.jceditor-wrap-div strong,.jceditor-wrap-div sub,.jceditor-wrap-div sup,.jceditor-wrap-div tt,.jceditor-wrap-div var,.jceditor-wrap-div b,.jceditor-wrap-div u,.jceditor-wrap-div i,
+.jceditor-wrap-div center,.jceditor-wrap-div dl, .jceditor-wrap-div dt,.jceditor-wrap-div dd,.jceditor-wrap-div ol,.jceditor-wrap-div ul,.jceditor-wrap-div li,.jceditor-wrap-div fieldset,
+.jceditor-wrap-div form,.jceditor-wrap-div  label,.jceditor-wrap-div  legend,.jceditor-wrap-div table,.jceditor-wrap-div caption,
+.jceditor-wrap-div tbody,.jceditor-wrap-div tfoot,.jceditor-wrap-div thead,.jceditor-wrap-div tr,.jceditor-wrap-div th,.jceditor-wrap-div  td,.jceditor-wrap-div article,.jceditor-wrap-div aside,.jceditor-wrap-div canvas,.jceditor-wrap-div  details,.jceditor-wrap-div embed,
+.jceditor-wrap-div figure,.jceditor-wrap-div figcaption,.jceditor-wrap-div footer,.jceditor-wrap-div header,.jceditor-wrap-div hgroup,.jceditor-wrap-div menu,.jceditor-wrap-div nav,.jceditor-wrap-div output,.jceditor-wrap-div ruby,.jceditor-wrap-div section,
+.jceditor-wrap-div summary,.jceditor-wrap-div time,.jceditor-wrap-div mark,.jceditor-wrap-div audio,.jceditor-wrap-div textarea,
+.jceditor-wrap-div video {	margin: 0;	padding: 0;	border: 0;	font-size: 100%;	font: normal;	vertical-align: baseline;line-height:100%;word-spacing: 0;width:auto;height:auto;}
+/* HTML5 display-role reset for older browsers */
+.jceditor-wrap-div article,.jceditor-wrap-div aside,.jceditor-wrap-div details,.jceditor-wrap-div  figcaption,.jceditor-wrap-div figure,.jceditor-wrap-div footer,.jceditor-wrap-div header,
+.jceditor-wrap-div hgroup,.jceditor-wrap-div menu,.jceditor-wrap-div nav,.jceditor-wrap-div section {display: block;}
+.jceditor-wrap-div ol, ul {	list-style: none;}
+.jceditor-wrap-div  blockquote, q {quotes: none;}
+.jceditor-wrap-div  blockquote:before, blockquote:after,q:before, q:after {content: '';content: none;}
+.jceditor-wrap-div  table {	border-collapse: collapse;	border-spacing: 0;}
+/*	inline-block이 IE6 or IE7 에서 안먹기 때문에 CSS HACK 을 이용하여 문제 해결. jceditor-container-div 클래스는 전체적인 jceditor 의 바깥영력 스타일을 잡아줌. */
+/** 	에디터 감싸는 div **/
+.jceditor-wrap-div {position:relative;display:inline-block;zoom:1;/*IE6,7*/*display:inline;/*IE6,7*/;}
+
+/** 에디터 구조잡기위한 테이블 div **/
+.jceditor-wrap-div .jceditor-container-table{word-wrap:break-word;word-break:break-container;table-layout:fixed;border: solid 1px #DDD;border-collapse: collapse;background-color: white;width:500px;height:600px}
+
+.jceditor-wrap-div .jceditor-toolbar-td {padding:6px;padding-top:7px;  background-color:#f7f7f7;z-index:1;}
+
+/** 	테이블 안에 툴바를 넣을 div **/
+
+.jceditor-wrap-div .jceditor-toolBarWrap-div{background-color:#f7f7f7; word-wrap:break-word;word-break:break-container;width:100%; height:100%;overflow:hidden; font-size: 11px;line-height: 8px;}
+.jceditor-wrap-div .jceditor-toolBarWrap-div  li, img {height:21px;float: left;}	
+
+/*FireFox Browser*/
+.jceditor-wrap-div .jceditor-toolBarWrap-div  li, img , x:-moz-any-link, x:default {height:20px;*height:21px; float: left;}	
+
+
+/** 	툴바에 들어갈 메뉴들을 구분하기 위한 ul  **/
+
+.jceditor-wrap-div .jceditor-toolBarWrap-div .jceditor-group-ul{padding: 2px; padding-right:4px;_padding-right:4px;	display: inline-block;*zoom:1;/*IE6,7*/*display:inline;/*IE6,7*/;text-align: left}
+/*opera Browser Hack*/
+@media all and (-webkit-min-device-pixel-ratio:10000), not all and (-webkit-min-device-pixel-ratio:0) 
+{.jceditor-wrap-div .jceditor-toolBarWrap-div .jceditor-group-ul{padding-right:4px;}}
+/*Chrome ,Safari Browser*/
+@media screen and (-webkit-min-device-pixel-ratio:0)
+{.jceditor-wrap-div .jceditor-toolBarWrap-div .jceditor-group-ul{padding-right:4px;}}
+/*FireFox Browser*/
+.jceditor-wrap-div .jceditor-toolBarWrap-div .jceditor-group-ul, x:-moz-any-link, x:default {padding-right:4px; *padding-right:4px;}
+
+/** 	툴바와 아래 컨텐츠와의 경계선 **/
+
+.jceditor-wrap-div .jceditor-shadowLine-div{background-image:url('top_shadow_line.gif');background-repeat:repeat-x ;height:4px}
+
+/** 	아이프레임과 TextArea가 들어갈 컨텐츠 항목. **/
+
+.jceditor-wrap-div .jceditor-content-td{height:100%;background-color:#FFF}
+.jceditor-wrap-div .jceditor-contentWrap-div{position:relative;z-index:0;}
+
+/** 	컨텐츠 항목에 들어갈 TextArea **/
+
+.jceditor-wrap-div .jceditor-content-textarea{resize:none; vertical-align: baseline; width:100%; overflow:auto;border:0 none;display:none;font-size:12px;font-family: 돋움;border-spacing: 0;}
+
+/** 	컨텐츠 항목에 들어갈 iframe **/
+
+.jceditor-wrap-div .jceditor-content-iframe{border:0px none ;width:100%; overflow:auto;display:block;font-size: 10px;font-family: 돋움;word-wrap:break-word;word-break:break-container;}
+
+/** 	구글 크롬에서 드래그 하면 아이프레임에 마우스가 먹히는(사라지느현상) 증상 방지. **/
+
+.jceditor-wrap-div .jceditor-dragBlock-div{position:absolute;bottom:0;  border:0px none ;bottom:5px; right:5px; width:500px;height:500px;background-position:right; ;vertical-align:bottom;display:none;}
+
+/** 	컨텐츠 크기를 자유자재로 늘리는 drag div**/
+
+.jceditor-wrap-div .jceditor-dragResize-td{background-color:#FFF;}
+.jceditor-wrap-div .jceditor-dragResize-div{position:relative;  bottom:0; right:0; width:25px;height:14px;background-image:url('./ico_drag_resize.gif') ;background-repeat:no-repeat;background-position:right; cursor: se-resize;vertical-align:bottom;float:right;}
+
+
+
+
+/** 	메뉴항목에서 select 형식으로 보여줄 Button style 각 브라우져마다 보이는 방식이 틀려 핵으로 돌림 **/
+.jceditor-wrap-div .jceditor-group-ul  span {display:block; height:21px; margin:0; padding:0; border:0; font-size:0;}
+.jceditor-wrap-div .jceditor-group-ul  button::-moz-focus-inner {border: 0; padding: 0;padding-top:0px}/*Firefox button패딩 초기화 핵.*/
+.jceditor-wrap-div .jceditor-group-ul  button {font-family: 굴림;margin:0;padding:0;text-align:left;line-height:20px;_line-height:17px;height:21px;border:0; background:none; cursor:pointer;overflow:visible; font-size:9pt;padding-left:4px;padding-top:1px;*padding-top:1px;_padding-top:3px;}
+.jceditor-wrap-div .jceditor-group-ul  button span {overflow:hidden; position:absolute; top:0; left:0; width:0; height:0; margin:0; padding:0; visibility:hidden;}
+
+
+/**  글꼴 버튼 선택시 나오는 DropDown div **/
+
+.jceditor-wrap-div .jceditor-selectFontFamilyList-ul {margin-left:0px;position:absolute;border:solid 1px #d9d9d9;padding:4px;width:150px;font-family:돋움;background-color:#ffffff;z-index:1;display:block;}
+.jceditor-wrap-div .jceditor-selectFontFamilyList-ul li {height: 100%; line-height:16px; width:146px;;padding-top:2px;_padding-top:3px;/*IE6*/}
+.jceditor-wrap-div .jceditor-selectFontFamilyList-ul span {height: 100%; line-height:18px;_line-height:16px; width:146px;;padding-top:0px;_padding-top:1px;/*IE6*/;font-size:9pt}
+
+/**  글자색 버튼 선택시 나오는 DropDown div **/
+
+.jceditor-wrap-div .jceditor-selectFontSizeList-ul {margin-left:0px;position:absolute;border:solid 1px #d9d9d9;padding:4px;width:352px;background-color:#ffffff;z-index:1;display:block}
+.jceditor-wrap-div .jceditor-selectFontSizeList-ul li {line-height:100%; height:100%;width:348px;}
+.jceditor-wrap-div .jceditor-selectFontSizeList-ul span {display: inline-block;*zoom:1;/*display:inline;/*IE6,7*/;padding:2px; line-height:100%;;vertical-align: middle;font-size:100%;height:100%;font-family:돋움 }
+
+
+/**  DropDown 메뉴에 마우스로 움직일 시 롤오버 **/
+
+.jceditor-wrap-div .jceditor-selectFont-on {border:solid 1px #AAD5FF;padding-left:3px;cursor:pointer;background-color:#F7FBFF;}
+.jceditor-wrap-div .jceditor-selectFont-off {;border:solid 1px #ffffff;padding-left:3px;cursor:pointer;height:100%}
+
+/** 글자색과 글자배경색을 지정하기위한 팔레트 css **/
+ 
+
+.jceditor-wrap-div .jceditor-color-palate{width:114px;	height:160px;	*height:160px;_height:161px;border: solid 1px #d9d9d9;	position: absolute;	overflow:visible;	background-color: white;	z-index:1000;display:block}
+.jceditor-wrap-div .jceditor-color-palate table{	margin-top :5px;	margin-left : 5px;	width:105px; border-collapse: collapse;border-spacing:0px; 	position:relative;}
+
+.jceditor-wrap-div .jceditor-color-palate .jceditor-top-tr td{margin:0px;padding:0px;_padding-top:1px;	height:35px;font-family:돋움;vertical-align: middle}
+
+.jceditor-wrap-div .jceditor-color-palate .jceditor-top-tr div{z-index: 2 ;font-size: 10pt}
+/*FireFox Browser*/
+@-moz-document url-prefix(){.jceditor-wrap-div .jceditor-color-palate .jceditor-top-tr div {margin-top:-1px}}
+
+
+.jceditor-wrap-div .jceditor-color-palate .jceditor-color-tr td{margin:0px;padding:0px;padding-left:1px;width:13px;height:13px;line-height: 0;font-size:0;}
+@media screen and (-webkit-min-device-pixel-ratio:0)
+{.jceditor-wrap-div .jceditor-color-palate .jceditor-color-tr td	{margin:0px;padding:0px;	padding-left:2px}}
+
+
+.jceditor-wrap-div .jceditor-color-palate .jceditor-bottom-tr fieldset {margin-top:-1px ;padding-top:1px;*padding-top:3px;width:102px;height:41px;*height:39px;_height:40px;border:solid 1px #CCC;line-height: 17px;}
+.jceditor-wrap-div .jceditor-color-palate .jceditor-bottom-tr legend {*margin-top:-4px;_margin_top:-2px;margin-left:26px;*margin-left:19px;font-size:9pt;line-height:17px}
+
+
+.jceditor-wrap-div .jceditor-color-palate a{	width:8px;height:8px; position:relative;display:block;font-size: 0;cursor:pointer}
+
+.jceditor-wrap-div .jceditor-color-palate .on{border-color: red}
+.jceditor-wrap-div .jceditor-color-palate .off{border-color: gray}
+
+/** 팔레트에 마우스 가져가면 큰 색으로 보여주는 상단 div **/
+
+.jceditor-wrap-div .jceditor-color-palate .jceditor-textcolor-div{	;width:102px;height:22px;border:solid 1px #CCC;text-align: center;}
+.jceditor-wrap-div .jceditor-color-palate .jceditor-textcolor-div div{line-height:26px;line-height:25px \0;/*IE8*/*line-height:24px;_line-height:22px;}
+
+/** 팔레트에 마우스 가져가면 글자 배경색을 보여주는 div **/
+
+.jceditor-wrap-div .jceditor-color-palate .jceditor-textview-div{line-height: 100%;*line-height:20px;margin-top:2px;*margin-top:0px;_margin-top:1px;vertical-align:middle;;text-align: center;font-size: 9pt;font-family: 돋움}
+
+
+/*버튼 모음.*/
+
+.jceditor-wrap-div   .jceditor-fontfamily-btn{width:70px;}
+.jceditor-wrap-div   .jceditor-fontfamily-btn-off{width:70px; background:url(./images/btnset.gif) -0px -63px no-repeat; }
+.jceditor-wrap-div   .jceditor-fontfamily-btn-on{width:70px; background:url(./images/btnset.gif) -0px -84px no-repeat; }
+.jceditor-wrap-div   .jceditor-fontfamily-btn-disabled{width:70px; background:url(./images/btnset.gif) -0px -105px no-repeat; }
+
+.jceditor-wrap-div   .jceditor-fontsize-btn{width:45px;}
+.jceditor-wrap-div   .jceditor-fontsize-btn-off{width:45px; background:url(./images/btnset.gif) -70px -63px no-repeat; }
+.jceditor-wrap-div   .jceditor-fontsize-btn-on{width:45px;background:url(./images/btnset.gif) -70px -84px no-repeat; }
+.jceditor-wrap-div   .jceditor-fontsize-btn-disabled{width:45px;background:url(./images/btnset.gif) -70px -105px no-repeat; }
+
+.jceditor-wrap-div   .jceditor-default-btn{width:21px;}
+
+.jceditor-wrap-div .jceditor-bold-btn-off {width:21px; background:url(./images/btnset.gif) -115px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-bold-btn-on {width:21px; background:url(./images/btnset.gif) -115px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-bold-btn-disabled {width:21px; background:url(./images/btnset.gif) -115px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-underline-btn-off {width:21px; background:url(./images/btnset.gif) -136px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-underline-btn-on {width:21px; background:url(./images/btnset.gif) -136px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-underline-btn-disabled {width:21px; background:url(./images/btnset.gif) -136px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-italic-btn-off {width:21px; background:url(./images/btnset.gif) -157px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-italic-btn-on {width:21px; background:url(./images/btnset.gif) -157px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-italic-btn-disabled {width:21px; background:url(./images/btnset.gif) -157px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-strikethrough-btn-off {width:21px; background:url(./images/btnset.gif) -178px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-strikethrough-btn-on {width:21px; background:url(./images/btnset.gif) -178px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-strikethrough-btn-disabled {width:21px; background:url(./images/btnset.gif) -178px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-forecolor-btn-off {width:21px; background:url(./images/btnset.gif) -199px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-forecolor-btn-on {width:21px; background:url(./images/btnset.gif) -199px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-forecolor-btn-disabled {width:21px; background:url(./images/btnset.gif) -199px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-backcolor-btn-off {width:22px; background:url(./images/btnset.gif) -220px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-backcolor-btn-on {width:22px; background:url(./images/btnset.gif) -220px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-backcolor-btn-disabled {width:22px; background:url(./images/btnset.gif) -220px -105px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-justifyleft-btn-off {width:21px; background:url(./images/btnset.gif) -242px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-justifyleft-btn-on {width:21px; background:url(./images/btnset.gif) -242px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-justifyleft-btn-disabled {width:21px; background:url(./images/btnset.gif) -242px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-justifycenter-btn-off {width:21px; background:url(./images/btnset.gif) -263px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-justifycenter-btn-on {width:21px; background:url(./images/btnset.gif) -263px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-justifycenter-btn-disabled {width:21px; background:url(./images/btnset.gif) -263px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-justifyright-btn-off {width:21px; background:url(./images/btnset.gif) -284px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-justifyright-btn-on {width:21px; background:url(./images/btnset.gif) -284px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-justifyright-btn-disabled {width:21px; background:url(./images/btnset.gif) -284px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-justifyfull-btn-off {width:22px; background:url(./images/btnset.gif) -305px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-justifyfull-btn-on {width:22px; background:url(./images/btnset.gif) -305px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-justifyfull-btn-disabled {width:22px; background:url(./images/btnset.gif) -305px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-insertorderedlist-btn-off {width:21px; background:url(./images/btnset.gif) -327px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-insertorderedlist-btn-on {width:21px; background:url(./images/btnset.gif) -327px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-insertorderedlist-btn-disabled {width:21px; background:url(./images/btnset.gif) -327px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-insertunorderedlist-btn-off {width:22px; background:url(./images/btnset.gif) -348px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-insertunorderedlist-btn-on {width:22px; background:url(./images/btnset.gif) -348px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-insertunorderedlist-btn-disabled {width:22px; background:url(./images/btnset.gif) -348px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-outdent-btn-off {width:21px; background:url(./images/btnset.gif) -370px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-outdent-btn-on {width:21px; background:url(./images/btnset.gif) -370px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-outdent-btn-disabled {width:21px; background:url(./images/btnset.gif) -370px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-indent-btn-off {width:22px; background:url(./images/btnset.gif) -391px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-indent-btn-on {width:22px; background:url(./images/btnset.gif) -391px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-indent-btn-disabled {width:22px; background:url(./images/btnset.gif) -391px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-createlink-btn-off {width:21px; background:url(./images/btnset.gif) -413px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-createlink-btn-on {width:21px; background:url(./images/btnset.gif) -413px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-createlink-btn-disabled {width:21px; background:url(./images/btnset.gif) -413px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-unlink-btn-off {width:22px; background:url(./images/btnset.gif) -434px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-unlink-btn-on {width:22px; background:url(./images/btnset.gif) -434px -84px no-repeat; }
+.jceditor-wrap-div .jceditor-unlink-btn-disabled {width:22px; background:url(./images/btnset.gif) -434px -105px no-repeat; }
+
+.jceditor-wrap-div .jceditor-html-btn-off {width:32px; background:url(./images/btnset.gif) -456px -63px no-repeat; }
+.jceditor-wrap-div .jceditor-html-btn-on {width:32px; background:url(./images/btnset.gif) -456px -84px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-new-btn-off {width:22px; background:url(./images/btnset.gif) -0px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-new-btn-on {width:22px; background:url(./images/btnset.gif) -0px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-new-btn-disabled {width:22px; background:url(./images/btnset.gif) -0px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-undo-btn-off {width:21px; background:url(./images/btnset.gif) -22px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-undo-btn-on {width:21px; background:url(./images/btnset.gif) -22px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-undo-btn-disabled {width:21px; background:url(./images/btnset.gif) -22px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-redo-btn-off {width:22px; background:url(./images/btnset.gif) -43px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-redo-btn-on {width:22px; background:url(./images/btnset.gif) -43px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-redo-btn-disabled {width:22px; background:url(./images/btnset.gif) -43px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-cut-btn-off {width:21px; background:url(./images/btnset.gif) -65px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-cut-btn-on {width:21px; background:url(./images/btnset.gif) -65px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-cut-btn-disabled {width:21px; background:url(./images/btnset.gif) -65px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-copy-btn-off {width:21px; background:url(./images/btnset.gif) -86px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-copy-btn-on {width:21px; background:url(./images/btnset.gif) -86px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-copy-btn-disabled {width:21px; background:url(./images/btnset.gif) -86px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-paste-btn-off {width:21px; background:url(./images/btnset.gif) -107px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-paste-btn-on {width:21px; background:url(./images/btnset.gif) -107px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-paste-btn-disabled {width:21px; background:url(./images/btnset.gif) -107px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-selectall-btn-off {width:22px; background:url(./images/btnset.gif) -128px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-selectall-btn-on {width:22px; background:url(./images/btnset.gif) -128px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-selectall-btn-disabled {width:22px; background:url(./images/btnset.gif) -128px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-subscript-btn-off {width:21px; background:url(./images/btnset.gif) -150px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-subscript-btn-on {width:21px; background:url(./images/btnset.gif) -150px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-subscript-btn-disabled {width:21px; background:url(./images/btnset.gif) -150px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-superscript-btn-off {width:21px; background:url(./images/btnset.gif) -171px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-superscript-btn-on {width:21px; background:url(./images/btnset.gif) -171px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-superscript-btn-disabled {width:21px; background:url(./images/btnset.gif) -171px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-removeformat-btn-off {width:22px; background:url(./images/btnset.gif) -192px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-removeformat-btn-on {width:22px; background:url(./images/btnset.gif) -192px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-removeformat-btn-disabled {width:22px; background:url(./images/btnset.gif) -192px -42px no-repeat; }
+
+.jceditor-wrap-div .jceditor-quotation-btn-off {width:21px; background:url(./images/btnset.gif) -214px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-quotation-btn-on {width:21px; background:url(./images/btnset.gif) -214px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-quotation-btn-disabled {width:21px; background:url(./images/btnset.gif) -214px -42px no-repeat; }
+
+
+.jceditor-wrap-div .jceditor-writebox-btn-off {width:22px; background:url(./images/btnset.gif) -235px -0px no-repeat; }
+.jceditor-wrap-div .jceditor-writebox-btn-on {width:22px; background:url(./images/btnset.gif) -235px -21px no-repeat; }
+.jceditor-wrap-div .jceditor-writebox-btn-disabled {width:22px; background:url(./images/btnset.gif) -235px -42px no-repeat; }
+
+.jceditor-wrap-div  .jceditor-dialog-div {
+		margin:0;
+		padding:0;
+		background:#F4F4F4;
+		width:365px;
+		height:250px;
+		border:1px solid #4297d7;				
+		/* fixed를 한뒤 left, top을 50% 지정 */
+		position: absolute ; top: 50%; left: 50%; 
+		/* 너비와 높이의 절반값을 각각 margin-left와 margin-top의 음수로 지정 */
+		margin-left: -182px;margin-top: -125px; 
+		display:none; 
+		padding:0; 
+		z-index:500; 		
+		font-weight: bold;
+		font-family: 돋움;
+		color: white	; 
+		font-size: 10pt;
+}
+
+
+.jceditor-wrap-div .jceditor-dialog-div .titlebar-ul .titlebar-center-li{
+	width:100%;
+	height:26px;
+	background-image:url(images/dialog/dialog_titlebar_center.gif); 
+}
+
+.jceditor-wrap-div .jceditor-dialog-div .titlebar-ul .titlebar-center-li span{
+	line-height:26px;
+	margin-left:8px;
+	font-size:10pt;
+}
+
+</style>
+</head>
+<body>
+<div align="center" style="background-color:none;width:1000px;height:500px;">
+  <ul stlye="height:22px;float: left;">
+    <li> bbbbbbbbbbbbbbbbb <br>
+      <br>
+      bbbbbbb </li>
+    <li>
+      <div id="edit1-jceditor-wrap-div" class="jceditor-wrap-div" unselectable="on">
+        <table id="edit1-jceditor-container-table" class="jceditor-container-table" border="0" style="width: 600px; height: 500px;">
+          <tbody>
+            <tr>
+              <td class="jceditor-toolbar-td" align="left"><div class="jceditor-toolBarWrap-div">
+                  <ul id="edit1-groupA" class="jceditor-group-ul">
+                    <li id="edit1-NewDocument" class="jceditor-group-li"> <span id="edit1-NewDocument-span" class="jceditor-new-btn-off">
+                      <button id="edit1-NewDocument-btn" class="jceditor-default-btn" title="새 문서" type="button"></button>
+                      </span> </li>
+                  </ul>
+                  <ul id="edit1-groupB" class="jceditor-group-ul">
+                    <li id="edit1-Undo" class="jceditor-group-li"> <span id="edit1-Undo-span" class="jceditor-undo-btn-off">
+                      <button id="edit1-Undo-btn" class="jceditor-default-btn" title="되돌리기" type="button"></button>
+                      </span> </li>
+                    <li id="edit1-Redo" class="jceditor-group-li"> <span id="edit1-Redo-span" class="jceditor-redo-btn-off">
+                      <button id="edit1-Redo-btn" class="jceditor-default-btn" title="다시실행" type="button"></button>
+                      </span> </li>
+                  </ul>
+                  <ul id="edit1-groupC" class="jceditor-group-ul">
+                    <li id="edit1-Cut" class="jceditor-group-li"> <span id="edit1-Cut-span" class="jceditor-cut-btn-off">
+                      <button id="edit1-Cut-btn" class="jceditor-default-btn" title="자르기" type="button"></button>
+                      </span> </li>
+                    <li id="edit1-Copy" class="jceditor-group-li"> <span id="edit1-Copy-span" class="jceditor-copy-btn-off">
+                      <button id="edit1-Copy-btn" class="jceditor-default-btn" title="복사하기" type="button"></button>
+                      </span> </li>
+                    <li id="edit1-Paste" class="jceditor-group-li"> <span id="edit1-Paste-span" class="jceditor-paste-btn-off">
+                      <button id="edit1-Paste-btn" class="jceditor-default-btn" title="붙여넣기" type="button"></button>
+                      </span> </li>
+                    <li id="edit1-SelectAll" class="jceditor-group-li"> <span id="edit1-SelectAll-span" class="jceditor-selectall-btn-off">
+                      <button id="edit1-SelectAll-btn" class="jceditor-default-btn" title="전체선택" type="button"></button>
+                      </span> </li>
+                  </ul>
+                  <ul id="edit1-groupD" class="jceditor-group-ul">
+                    <li id="edit1-SubScript" class="jceditor-group-li"> <span id="edit1-SubScript-span" class="jceditor-subscript-btn-off">
+                      <button id="edit1-SubScript-btn" class="jceditor-default-btn" title="아래첨자" type="button"></button>
+                      </span> </li>
+                    <li id="edit1-SuperScript" class="jceditor-group-li"> <span id="edit1-SuperScript-span" class="jceditor-superscript-btn-off">
+                      <button id="edit1-SuperScript-btn" class="jceditor-default-btn" title="윗첨자" type="button"></button>
+                      </span> </li>
+                    <li id="edit1-RemoveFormat" class="jceditor-group-li"> <span id="edit1-RemoveFormat-span" class="jceditor-removeformat-btn-off">
+                      <button id="edit1-RemoveFormat-btn" class="jceditor-default-btn" title="서식제거" type="button"></button>
+                      </span> </li>
+                  </ul>
+                  <ul id="edit1-groupE" class="jceditor-group-ul">
+                    <li id="edit1-Quotation" class="jceditor-group-li"> <span id="edit1-Quotation-span" class="jceditor-quotation-btn-off">
+                      <button id="edit1-Quotation-btn" class="jceditor-default-btn" title="인용구" type="button"></button>
+                       <div id="edit1-QuotationDropDown-div" style="display: block;">
+                        <div class="jceditor-color-palate">
+                         <BLOCKQUOTE class=q2>
+<P>d﻿</P></BLOCKQUOTE>
+                        </div>
+                      </div>
+                            
+                      
+                      
+                      </span> </li>
+                    <li id="edit1-WriteBox" class="jceditor-group-li"> <span id="edit1-WriteBox-span" class="jceditor-writebox-btn-off">
+                      <button id="edit1-WriteBox-btn" class="jceditor-default-btn" title="글상자" type="button"></button>
+                      </span> </li>
+                  </ul>
+                </div>
+                <div class="jceditor-toolBarWrap-div">
+                  <ul id="edit1-group1" class="jceditor-group-ul">
+                    <li id="edit1-FontFamily" class="jceditor-group-li"> <span id="edit1-FontFamily-span" class="jceditor-fontfamily-btn-off">
+                      <button id="edit1-FontFamily-btn" class="jceditor-fontfamily-btn" title="글꼴" type="button">글꼴</button>
+                      <div id="edit1-FontFamilyDropDown-div" style="display: none;">
+                        <ul class="jceditor-selectFontFamilyList-ul">
+                          <li class="jceditor-selectFont-off"> <span id="edit1-selectFontFamily-span" style="font-family: 굴림;">굴림</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="edit1-selectFontFamily-span" style="font-family: 굴림체;">굴림체</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="edit1-selectFontFamily-span" style="font-family: 돋움;">돋움</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="edit1-selectFontFamily-span" style="font-family: 돋움체;">돋움체</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="edit1-selectFontFamily-span" style="font-family: 바탕;">바탕</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="edit1-selectFontFamily-span" style="font-family: 바탕체;">바탕체</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="edit1-selectFontFamily-span" style="font-family: 궁서;">궁서</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="edit1-selectFontFamily-span" style="font-family: Arial;">Arial</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="edit1-selectFontFamily-span" style="font-family: Arial Black;">Arial Black</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="edit1-selectFontFamily-span" style="font-family: Comic Sans Ms;">Comic Sans Ms</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="edit1-selectFontFamily-span" style="font-family: Courier New;">Courier New</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="edit1-selectFontFamily-span" style="font-family: Tahoma;">Tahoma</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="edit1-selectFontFamily-span" style="font-family: Verdana;">Verdana</span> </li>
+                        </ul>
+                      </div>
+                      </span> </li>
+                  </ul>
+                  <ul id="edit1-group2" class="jceditor-group-ul">
+                    <li id="edit1-FontSize" class="jceditor-group-li"> <span id="edit1-FontSize-span" class="jceditor-fontsize-btn-off">
+                      <button id="edit1-FontSize-btn" class="jceditor-fontsize-btn" title="크기" type="button">10pt</button>
+                      <div id="edit1-FontSizeDropDown-div" style="display: block;">
+                        <ul class="jceditor-selectFontSizeList-ul">
+                          <li class="jceditor-selectFont-off"> <span id="undefined-selectFontSize-span" style="font-size: 8pt;">8pt (가나다라)</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="undefined-selectFontSize-span" style="font-size: 10pt;">10pt (가나다라)</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="undefined-selectFontSize-span" style="font-size: 12pt;">12pt (가나다라)</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="undefined-selectFontSize-span" style="font-size: 14pt;">14pt (가나다라)</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="undefined-selectFontSize-span" style="font-size: 18pt;">18pt (가나다라)</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="undefined-selectFontSize-span" style="font-size: 24pt;">24pt (가나다라)</span> </li>
+                          <li class="jceditor-selectFont-off"> <span id="undefined-selectFontSize-span" style="font-size: 36pt;">36pt (가나다라)</span> </li>
+                        </ul>
+                      </div>
+                      </span> </li>
+                  </ul>
+                  <ul id="edit1-group3" class="jceditor-group-ul">
+                    <li id="edit1-Bold" class="jceditor-group-li"> <span id="edit1-Bold-span" class="jceditor-bold-btn-off">
+                      <button id="edit1-Bold-btn" class="jceditor-default-btn" title="굵게" type="button"></button>
+                      </span> </li>
+                    <li id="edit1-Underline" class="jceditor-group-li"> <span id="edit1-Underline-span" class="jceditor-underline-btn-off">
+                      <button id="edit1-Underline-btn" class="jceditor-default-btn" title="밑줄" type="button"></button>
+                      </span> </li>
+                    <li id="edit1-Italic" class="jceditor-group-li"> <span id="edit1-Italic-span" class="jceditor-italic-btn-off">
+                      <button id="edit1-Italic-btn" class="jceditor-default-btn" title="기울림꼴" type="button"></button>
+                      </span> </li>
+                    <li id="edit1-Strikethrough" class="jceditor-group-li"> <span id="edit1-Strikethrough-span" class="jceditor-strikethrough-btn-off">
+                      <button id="edit1-Strikethrough-btn" class="jceditor-default-btn" title="취소선" type="button"></button>
+                      </span> </li>
+                    <li id="edit1-ForeColor" class="jceditor-group-li"> <span id="edit1-ForeColor-span" class="jceditor-forecolor-btn-off">
+                      <button id="edit1-ForeColor-btn" class="jceditor-default-btn" title="글자색" type="button"></button>
+                      <div id="edit1-ForeColorDropDown-div" style="display: none;">
+                        <div class="jceditor-color-palate">
+                          <table>
+                            <tbody>
+                              <tr class="jceditor-top-tr">
+                                <td colspan="8"><div id="edit1-textForeColor-box" class="jceditor-textcolor-div">
+                                    <div>#000000</div>
+                                  </div></td>
+                              </tr>
+                              <tr class="jceditor-color-tr">
+                                <td><a class="jceditor-color-palate off" style="background-color:#000000"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#993300"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#333300"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#003300"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#003366"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#000080"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#333399"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#333333"></a></td>
+                              </tr>
+                              <tr class="jceditor-color-tr">
+                                <td><a class="jceditor-color-palate off" style="background-color:#800000"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#FF6600"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#808000"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#008000"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#008080"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#0000FF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#666699"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#808080"></a></td>
+                              </tr>
+                              <tr class="jceditor-color-tr">
+                                <td><a class="jceditor-color-palate off" style="background-color:#FF0000"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#FF9900"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#99CC00"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#339966"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#33CCCC"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#3366FF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#800080"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#999999"></a></td>
+                              </tr>
+                              <tr class="jceditor-color-tr">
+                                <td><a class="jceditor-color-palate off" style="background-color:#FF00FF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#FFCC00"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#FFFF00"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#00FF00"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#00FFFF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#00CCFF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#993366"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#C0C0C0"></a></td>
+                              </tr>
+                              <tr class="jceditor-color-tr">
+                                <td><a class="jceditor-color-palate off" style="background-color:#FF99CC"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#FFCC99"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#FFFF99"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#CCFFCC"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#CCFFFF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#99CCFF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#CC99FF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#FFFFFF"></a></td>
+                              </tr>
+                              <tr class="jceditor-bottom-tr">
+                                <td colspan="8"><fieldset>
+                                    <legend>미리보기</legend>
+                                    <div id="edit1-viewForeColor-box" class="jceditor-textview-div"> <font>가나다라마바</font> </div>
+                                  </fieldset></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      </span> </li>
+                    <li id="edit1-BackColor" class="jceditor-group-li"> <span id="edit1-BackColor-span" class="jceditor-backcolor-btn-off">
+                      <button id="edit1-BackColor-btn" class="jceditor-default-btn" title="배경색" type="button"></button>
+                      <div id="edit1-BackColorDropDown-div" style="display: none;">
+                        <div class="jceditor-color-palate">
+                          <table>
+                            <tbody>
+                              <tr class="jceditor-top-tr">
+                                <td colspan="8"><div id="edit1-textBackColor-box" class="jceditor-textcolor-div">
+                                    <div>#FFFFFF</div>
+                                  </div></td>
+                              </tr>
+                              <tr class="jceditor-color-tr">
+                                <td><a class="jceditor-color-palate off" style="background-color:#000000"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#993300"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#333300"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#003300"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#003366"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#000080"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#333399"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#333333"></a></td>
+                              </tr>
+                              <tr class="jceditor-color-tr">
+                                <td><a class="jceditor-color-palate off" style="background-color:#800000"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#FF6600"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#808000"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#008000"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#008080"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#0000FF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#666699"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#808080"></a></td>
+                              </tr>
+                              <tr class="jceditor-color-tr">
+                                <td><a class="jceditor-color-palate off" style="background-color:#FF0000"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#FF9900"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#99CC00"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#339966"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#33CCCC"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#3366FF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#800080"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#999999"></a></td>
+                              </tr>
+                              <tr class="jceditor-color-tr">
+                                <td><a class="jceditor-color-palate off" style="background-color:#FF00FF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#FFCC00"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#FFFF00"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#00FF00"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#00FFFF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#00CCFF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#993366"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#C0C0C0"></a></td>
+                              </tr>
+                              <tr class="jceditor-color-tr">
+                                <td><a class="jceditor-color-palate off" style="background-color:#FF99CC"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#FFCC99"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#FFFF99"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#CCFFCC"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#CCFFFF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#99CCFF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#CC99FF"></a></td>
+                                <td><a class="jceditor-color-palate off" style="background-color:#FFFFFF"></a></td>
+                              </tr>
+                              <tr class="jceditor-bottom-tr">
+                                <td colspan="8"><fieldset>
+                                    <legend>미리보기</legend>
+                                    <div id="edit1-viewBackColor-box" class="jceditor-textview-div"> <font>가나다라마바</font> </div>
+                                  </fieldset></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      </span> </li>
+                  </ul>
+                  <ul id="edit1-group4" class="jceditor-group-ul">
+                    <li id="edit1-Justifyleft" class="jceditor-group-li"> <span id="edit1-Justifyleft-span" class="jceditor-justifyleft-btn-on">
+                      <button id="edit1-Justifyleft-btn" class="jceditor-default-btn" title="왼쪽정렬" type="button"></button>
+                      </span> </li>
+                    <li id="edit1-Justifycenter" class="jceditor-group-li"> <span id="edit1-Justifycenter-span" class="jceditor-justifycenter-btn-off">
+                      <button id="edit1-Justifycenter-btn" class="jceditor-default-btn" title="중앙정렬" type="button"></button>
+                      </span> </li>
+                    <li id="edit1-Justifyright" class="jceditor-group-li"> <span id="edit1-Justifyright-span" class="jceditor-justifyright-btn-off">
+                      <button id="edit1-Justifyright-btn" class="jceditor-default-btn" title="오른쪽정렬" type="button"></button>
+                      </span> </li>
+                    <li id="edit1-Justifyfull" class="jceditor-group-li"> <span id="edit1-Justifyfull-span" class="jceditor-justifyfull-btn-off">
+                      <button id="edit1-Justifyfull-btn" class="jceditor-default-btn" title="양쪽 맞춤" type="button"></button>
+                      </span> </li>
+                  </ul>
+                  <ul id="edit1-group5" class="jceditor-group-ul">
+                    <li id="edit1-Insertorderedlist" class="jceditor-group-li"> <span id="edit1-Insertorderedlist-span" class="jceditor-insertorderedlist-btn-off">
+                      <button id="edit1-Insertorderedlist-btn" class="jceditor-default-btn" title="순서있는 목록" type="button"></button>
+                      </span> </li>
+                    <li id="edit1-Insertunorderedlist" class="jceditor-group-li"> <span id="edit1-Insertunorderedlist-span" class="jceditor-insertunorderedlist-btn-off">
+                      <button id="edit1-Insertunorderedlist-btn" class="jceditor-default-btn" title="순서없는 목록 " type="button"></button>
+                      </span> </li>
+                  </ul>
+                  <ul id="edit1-group6" class="jceditor-group-ul">
+                    <li id="edit1-Outdent" class="jceditor-group-li"> <span id="edit1-Outdent-span" class="jceditor-outdent-btn-off">
+                      <button id="edit1-Outdent-btn" class="jceditor-default-btn" title="내어쓰기" type="button"></button>
+                      </span> </li>
+                    <li id="edit1-Indent" class="jceditor-group-li"> <span id="edit1-Indent-span" class="jceditor-indent-btn-off">
+                      <button id="edit1-Indent-btn" class="jceditor-default-btn" title="들여쓰기" type="button"></button>
+                      </span> </li>
+                  </ul>
+                  <ul id="edit1-group7" class="jceditor-group-ul">
+                    <li id="edit1-CreateLink" class="jceditor-group-li"> <span id="edit1-CreateLink-span" class="jceditor-createlink-btn-off">
+                      <button id="edit1-CreateLink-btn" class="jceditor-default-btn" title="링크" type="button"></button>
+                      <div id="edit1-CreateLinkPopup-div" class="jceditor-dialog-div" style="width: 365px; height: 250px; display: none;">
+                        <ul class="titlebar-ul">
+                          <li class="titlebar-center-li"> <span>하이퍼링크</span> </li>
+                        </ul>
+                        <iframe id="edit1-CreateLinkPopup-iframe" scrolling="no" frameborder="0" src="plugin/hyperlink/hyperlink.html" style="width: 365px; height: 220px;"></iframe>
+                      </div>
+                      </span> </li>
+                    <li id="edit1-UnLink" class="jceditor-group-li"> <span id="edit1-UnLink-span" class="jceditor-unlink-btn-off">
+                      <button id="edit1-UnLink-btn" class="jceditor-default-btn" title="링크제거" type="button"></button>
+                      </span> </li>
+                  </ul>
+                  <ul id="edit1-group8" class="jceditor-group-ul">
+                    <li id="edit1-Htmlmode" class="jceditor-group-li"> <span id="edit1-Htmlmode-span" class="jceditor-html-btn-off">
+                      <button id="edit1-Htmlmode-btn" class="jceditor-default-btn" title="배경색" type="button"></button>
+                      </span> </li>
+                  </ul>
+                </div></td>
+            </tr>
+            <tr>
+              <td class="jceditor-shadowLine-div"></td>
+            </tr>
+            <tr>
+              <td class="jceditor-content-td"><div class="jceditor-contentWrap-div">
+                  <iframe id="edit1-jceditor-edit-iframe" class="jceditor-content-iframe" frameborder="0" src="about:blank" style="height: 418px;"></iframe>
+                  <textarea id="edit1" class="jceditor-content-textarea" style="height: 418px;"></textarea>
+                  <div id="edit1-jceditor-dragBlock-div" class="jceditor-dragBlock-div" unselectable="On"></div>
+                </div></td>
+            </tr>
+            <tr>
+              <td><div id="edit1-jceditor-dragResize-div" class="jceditor-dragResize-div" unselectable="On"></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </li>
+  </ul>
+</div>
+</body>
+</html>
