@@ -9,7 +9,7 @@
 .jceditor-wrap-div tbody,.jceditor-wrap-div tfoot,.jceditor-wrap-div thead,.jceditor-wrap-div tr,.jceditor-wrap-div th,.jceditor-wrap-div  td,.jceditor-wrap-div article,.jceditor-wrap-div aside,.jceditor-wrap-div canvas,.jceditor-wrap-div  details,.jceditor-wrap-div embed,
 .jceditor-wrap-div figure,.jceditor-wrap-div figcaption,.jceditor-wrap-div footer,.jceditor-wrap-div header,.jceditor-wrap-div hgroup,.jceditor-wrap-div menu,.jceditor-wrap-div nav,.jceditor-wrap-div output,.jceditor-wrap-div ruby,.jceditor-wrap-div section,
 .jceditor-wrap-div summary,.jceditor-wrap-div time,.jceditor-wrap-div mark,.jceditor-wrap-div audio,.jceditor-wrap-div textarea,
-.jceditor-wrap-div video {	margin: 0;	padding: 0;	border: 0;	font-size: 100%;	font: normal;	vertical-align: baseline;line-height:100%;word-spacing: 0;width:auto;height:auto;}
+.jceditor-wrap-div video {	margin: 0;	padding: 0;	border: none;	font-size: 100%;	font: normal;	vertical-align: baseline;line-height:100%;word-spacing: 0;width:auto;height:auto;}
 /* HTML5 display-role reset for older browsers */
 .jceditor-wrap-div article,.jceditor-wrap-div aside,.jceditor-wrap-div details,.jceditor-wrap-div  figcaption,.jceditor-wrap-div figure,.jceditor-wrap-div footer,.jceditor-wrap-div header,
 .jceditor-wrap-div hgroup,.jceditor-wrap-div menu,.jceditor-wrap-div nav,.jceditor-wrap-div section {display: block;}

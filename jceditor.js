@@ -34,7 +34,7 @@ var Browser = (function(){
 	    browerType = "Firefox";
 	} else if (browerAgent.indexOf("Safari") != -1) {
 	    browerType = "Safari";
-	} else if (browerAgent.indexOf("MSIE") != -1) {
+	} else if (browerAgent.indexOf("MSIE") != -1 || browerAgent.indexOf("rv:") != -1) {
 	    browerType = "MSIE";
 	}else{
 	    browerType = "Opera";       
@@ -47,13 +47,20 @@ var Browser = (function(){
 	var re = null;
 	
 	if (browerType == "MSIE") {
-	    re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+		
+		if (browerAgent.indexOf("rv:") != -1) {
+		    re = new RegExp("rv:([0-9]{1,}[\.0-9]{0,})");			
+		}else{
+		    re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");			
+		}
+		
 	} else {
 	    re = new RegExp(browerType + "/([0-9]{1,}[\.0-9]{0,})");
 	}
 	if (re.exec(ua) != null) {
 	    rv = parseFloat(RegExp.$1);
 	}
+	
 	
 	returnObj.version = rv;
 	
@@ -125,10 +132,9 @@ var addEvent = function (editBox, eventName, func) {
 
 /**
  * 에디터 창을 리사이징 한다.
- * 
+ * @class
  * @param textAreaId
  * @param ifrmId
- * @returns
  */
 var DragResize = function (textAreaId, ifrmId) {
 
@@ -213,6 +219,14 @@ var DragResize = function (textAreaId, ifrmId) {
 
 };
 
+/**
+ * @class
+ * @param textAreaId textarea 아이디
+ * @param width 가ㄹ크기
+ * @param height 높이
+ * @param config 설정 
+ *
+ */
 var JCEditor = function(textAreaId,width,height,config){
 	/** TextArea Id**/
 	this.textAreaId = textAreaId || "";
@@ -244,7 +258,8 @@ var JCEditor = function(textAreaId,width,height,config){
 	this.historyPos = -1;
 	/** 전체 화면 모드 지정.**/			 
 	this.fullMode = false;
-	
+	/** IE11 에서 포커스를 일어버리는 현상이 발생하여 선택된 부분 저장.**/	
+	this.storedSelections = [];
 	this.clickTableObj;
 	this.currRowIndex	= 0;
 	this.currColIndex = 0;
@@ -561,8 +576,17 @@ JCEditor.prototype = {
 	*/
 	getContent : function(){
 		
+		var aTag = this.ifrmDoc.getElementsByTagName("body")[0].getElementsByTagName("a");
+		
+		for ( var i = 0; i < aTag.length; i++) {
+			if(!aTag[i].getAttribute("target") && aTag[i].getAttribute("target") != "_blank"){
+				aTag[i].setAttribute("target","_blank");
+			}
+			
+		}
+		
 		var html = this.ifrmDoc.getElementsByTagName("body")[0].innerHTML;
-		var html = $J("#"+this.textAreaId).value = html ;
+		html = $J("#"+this.textAreaId).value = html ;
 		
 	
 		html = html.replace(/<(\/?)(font|Strong|i|em|u|strike|b)([^>]*)>/ig,
@@ -617,7 +641,7 @@ JCEditor.prototype = {
 	getContentLength : function() {
 		
 		var html = this.ifrmDoc.getElementsByTagName("body")[0].innerHTML;
-		var html = $J("#"+this.textAreaId).value = html ;
+		html = $J("#"+this.textAreaId).value = html ;
 		
 		var tagRegex = /<(\/?).*?([^>]*)>/gi;
 		var whitespace = /&nbsp;/gi;
@@ -757,11 +781,48 @@ JCEditor.prototype = {
 	*
 	*/	
 	pasteHTML : function(html){
+		
+		var self = this;
 
-		if (Browser.type=="MSIE") {
+		if (Browser.type=="MSIE"&& Browser.version < 9) {
+
 			this.selection.selection.pasteHTML(html);
 		} else {		
-			this.ifrmDoc.execCommand('inserthtml', null, html);
+
+			if(Browser.type=="MSIE" && Browser.version >= 9){
+		        var sel = self.getSelection("NEW").selection;
+		        var range = null;
+
+		        if (sel.getRangeAt && sel.rangeCount) {
+		            range = sel.getRangeAt(0);
+		            range.deleteContents();
+		            // Range.createContextualFragment() would be useful here but is
+		            // only relatively recently standardized and is not supported in
+		            // some browsers (IE9, for one)
+		            var el = self.ifrmDoc.createElement("div");
+		            el.innerHTML = html;
+
+		            var frag = self.ifrmDoc.createDocumentFragment(), node, lastNode;
+
+		            while ( (node = el.firstChild) ) {
+		                lastNode = frag.appendChild(node);
+		            }
+		            range.insertNode(frag);
+		            // Preserve the selection
+		            if (lastNode) {
+		                range = range.cloneRange();
+		                range.setStartAfter(lastNode);
+		                range.collapse(true);
+		                sel.removeAllRanges();
+		                sel.addRange(range);	            
+		            }
+		        }
+
+			}else{
+
+				this.ifrmDoc.execCommand('inserthtml', null, html);
+		
+			}
 		}
 	},	
 	
@@ -1242,7 +1303,9 @@ JCEditor.prototype = {
 		
 		$J("#"+this.textAreaId,"wrap").innerHTML=editLayout;
 		var editBox_cTable = $J("#"+this.textAreaId, "cTable");
+		
 		editBox_cTable.style.width=this.width;
+		editBox_cTable.style.height=this.height;
 		
 		if (Browser.type=="MSIE") {
 			var toolBarHeight =parseInt(editBox_cTable.getElementsByTagName("td")[0].offsetHeight);
@@ -1322,9 +1385,9 @@ JCEditor.prototype = {
 	{
 		var doc = $J("#"+this.textAreaId,"cTable").getElementsByTagName("tr")[2];
 		if(doc.offsetHeight != 0){
-			var pageheight = doc.offsetHeight; // 현재 지정된 객체의 padding값을 포함한 높이.(눈에보이는 높이 그대로..
-			$J("#"+this.ifrmId).style.cssText =";height:"+ pageheight+"px";
-			$J("#"+this.textAreaId).style.cssText =";height:"+ pageheight+"px";
+			var pageheight = this.height; // 현재 지정된 객체의 padding값을 포함한 높이.(눈에보이는 높이 그대로..
+			$J("#"+this.ifrmId).style.cssText =";height:"+ pageheight;
+			$J("#"+this.textAreaId).style.cssText =";height:"+ pageheight;
 		}
 	},
 
@@ -1462,19 +1525,24 @@ JCEditor.prototype = {
 	 *
 	 */
 	 
-	getSelection : function () {
+	getSelection : function (type) {
+		
 		var selection;
 		var selectionText;
 		var selectionhtmlText;
-		var selectEl;
-		
+		var selectEl;		
 
-		if (Browser.type == "MSIE" && Browser.version <= 9) {
+		
+		if (Browser.type == "MSIE" && type != "NEW" && Browser.version < 11) {
+		
 			selection = this.ifrmDoc.selection.createRange();
 			selectionText = this.ifrmDoc.selection.createRange().text;
 			selectionhtmlText = this.ifrmDoc.selection.createRange().htmlText;
-		} else {
+
+		} else if (Browser.type != "MSIE" || Browser.type == "MSIE" && (type == "NEW" || Browser.version >= 11) ) {
+			
 			var selectionObj = $J("#" + this.textAreaId, "ifrm").contentWindow().getSelection();
+			
 			selection = selectionObj;
 			selectionText = selectionObj.toString();
 			if (selection.rangeCount) { 
@@ -1484,7 +1552,9 @@ JCEditor.prototype = {
 	            } 
 	            selectionhtmlText = container.innerHTML; 
 	        } 
+
 		}
+		
 		return {
 					selection: selection,
 					selectionText: selectionText,
@@ -1501,7 +1571,7 @@ JCEditor.prototype = {
 	 
 	getFocusPosition : function () {
 
-		if (Browser.type == "MSIE" && Browser.version <= 9) {
+		if (Browser.type == "MSIE" && Browser.version < 11) {
 			this.ifrmContent.focus();  
 			if (this.selection != null && this.selection.selectionText.length > 0) {
 				this.selection.selection.select();
@@ -1514,12 +1584,13 @@ JCEditor.prototype = {
 				this.selection.selection.select();		
 			}
 
-		} else if (Browser.type != "MSIE" ) {
-			
+		} else if (Browser.type != "MSIE" || (Browser.type == "MSIE" && Browser.version >= 11)) {
+		
 				if (Browser.type == "Chrome" ) {
 					this.ifrmContent.contentWindow.document.getElementsByTagName("body")[0].focus();
 				}else{
-					  this.ifrmContent.focus();  					
+					this.ifrmContent.focus();  	
+					
 				}
 		}
 	},
@@ -2283,6 +2354,32 @@ JCEditor.prototype = {
 	
 	
 	/**
+	 * InternetExplorer 11 에서 selection을 잃어버리는 현상이 발생. execcommand가 먹히지 않는다.
+	 * execcommand메서드가 실행되게 하기 위하여 selection range범위 객체를 저장한다.	 * 
+	 */
+	saveDragTextRange : function(){
+		
+		if(Browser.type == "MSIE" && Browser.version >= 11){
+			this.storedSelections[0] = this.selection.selection.getRangeAt(0);
+		}
+	},
+	
+	restoreDragTextRange : function(){
+
+		if(Browser.type == "MSIE" && Browser.version >= 11){
+
+			var selection = this.selection.selection;
+			selection.removeAllRanges();
+			selection.addRange(this.storedSelections[0]);
+			this.storedSelections[0] = null;
+			
+		}else{
+			this.getFocusPosition();
+		}
+	},
+	
+	
+	/**
 	 * 컨텍스트 메뉴를 없앤다.
 	 * 
 	 */
@@ -2368,7 +2465,9 @@ JCEditor.prototype = {
 	{
 
 		this.btnDisabledCancel(event);
-	
+		
+    	this.saveDragTextRange();		
+
 		this.getFocusPosition();
 		var dropDownId = this.getLayerId("FontFamily","DropDown");
 
@@ -2396,7 +2495,8 @@ JCEditor.prototype = {
 	
 	fontFamily : function (event, commandParam) 
 	{
-		this.getFocusPosition();
+		this.restoreDragTextRange();	
+		
 		var dropDownId =this.getLayerId("FontFamily","DropDown");
 		this.ifrmDoc.execCommand("FontName", false, commandParam);
 		
@@ -2415,7 +2515,10 @@ JCEditor.prototype = {
 	{
 		this.btnDisabledCancel(event);
 	
-		this.getFocusPosition();
+    	this.saveDragTextRange();		
+
+		this.getSelection("MSIE");
+		this.getFocusPosition("MSIE");
 		var dropDownId = this.getLayerId("FontSize","DropDown");
 
 		var obj = $J("#"+dropDownId);
@@ -2442,8 +2545,8 @@ JCEditor.prototype = {
 
 	fontSize : function (event, commandParam) 
 	{	
-		this.getFocusPosition();
-		var dropDownId =this.getLayerId("FontSize","DropDown");
+		this.restoreDragTextRange();			
+		
 		this.ifrmDoc.execCommand("FontSize", false, commandParam);		
 
 		$J("#"+this.getBtnId("FontSize")).innerHTML=this.fontSizeInfo[commandParam].substr(0,8);			
@@ -2460,7 +2563,9 @@ JCEditor.prototype = {
 	selectForeColor : function (event) 
 	{
 		this.btnDisabledCancel(event);
-	
+
+    	this.saveDragTextRange();		
+		
 		this.getFocusPosition();		
 		var dropDownId = this.getLayerId("ForeColor","DropDown");
 
@@ -2488,7 +2593,9 @@ JCEditor.prototype = {
 		
 	foreColor : function (event, commandParam) 
 	{
-		this.getFocusPosition();
+
+		this.restoreDragTextRange();			
+
 		this.ifrmDoc.execCommand("ForeColor", false, commandParam);
 		
 		var id = this.getLayerId("ForeColor","DropDown");		
@@ -2504,6 +2611,8 @@ JCEditor.prototype = {
 	{
 		this.btnDisabledCancel(event);
 	
+    	this.saveDragTextRange();		
+
 		this.getFocusPosition();		
 		var dropDownId = this.getLayerId("BackColor","DropDown");
 
@@ -2536,7 +2645,8 @@ JCEditor.prototype = {
 	backColor : function (event, commandParam) 
 	{
 	
-		this.getFocusPosition();
+		this.restoreDragTextRange();	
+
 		var command = "BackColor"; //IE,Chrome,Safari
 		if ((Browser.type=="Firefox") ||(Browser.type=="Opera")) {
 			command = "HiliteColor"; //FireFox ,Safari		
@@ -2805,6 +2915,8 @@ JCEditor.prototype = {
 	{
 		this.btnDisabledCancel(event);
 		
+    	this.saveDragTextRange();		
+
 		this.getFocusPosition();		
 		var popupId = this.getLayerId("Emoticon","Popup");
 
@@ -2838,7 +2950,7 @@ JCEditor.prototype = {
 	
 	emoticon : function(event,commandParam){
 		
-		this.getFocusPosition();
+		this.restoreDragTextRange();
 		this.pasteHTML(commandParam);
 		
 		var id = this.getLayerId("Emoticon","Popup");
@@ -2857,6 +2969,8 @@ JCEditor.prototype = {
 	{
 		this.btnDisabledCancel(event);
 		
+    	this.saveDragTextRange();		
+
 		this.getFocusPosition();		
 		var popupId = this.getLayerId("Scharacter","Popup");
 
@@ -2890,7 +3004,7 @@ JCEditor.prototype = {
 	
 	scharacter : function(event,commandParam){
 		
-		this.getFocusPosition();
+		this.restoreDragTextRange();
 		this.pasteHTML(commandParam);
 		
 		var id = this.getLayerId("Scharacter","Popup");
@@ -3091,7 +3205,7 @@ JCEditor.prototype = {
 	printLine : function(event,commandParam){
 		
 		this.getFocusPosition();
-		this.pasteHTML("<hr style=\"page-break-after: always; border-bottom: #999 1px dotted; border-left: #999 1px dotted; border-top: #999 1px dotted; border-right: #999 1px dotted\"></hr>");
+		this.pasteHTML("<hr style=\"page-break-after: always; border-bottom: #999 1px dotted; border-left: #999 1px dotted; border-top: #999 1px dotted; border-right: #999 1px dotted;display:block !important\"></hr>");
 		this.viewToggle();
 
 	},	
@@ -3200,7 +3314,7 @@ JCEditor.prototype.plugin.document = function(iframeObj){
 
 /**
 * Table 에서 보여줄 contextMenu
-*
+* @class
 * @param oEditor 에디터 객체.
 */
 
@@ -3313,7 +3427,7 @@ JCEditor.prototype.plugin.ContextMenu.prototype={
 
 /**
 * 글자폰트를 지정하는 드롭다운 플러그인.
-*
+* @class
 * @param oEditor 에디터 객체.
 */
 
@@ -3392,7 +3506,7 @@ JCEditor.prototype.plugin.FormatBlock.prototype={
 
 /**
 * 글자폰트를 지정하는 드롭다운 플러그인.
-*
+* @class
 * @param oEditor 에디터 객체.
 */
 
@@ -3901,7 +4015,7 @@ JCEditor.prototype.plugin.CreateLink = function(oEditor){
 			var pluginPopup = oEditor.pluginIframe(popupId,"하이퍼링크");			
 			btnSpan.appendChild(pluginPopup);
 			
-			oEditor.setPlugin(365,250,"plugin/hyperlink/hyperlink.html",popupId);
+			oEditor.setPlugin(365,250,"/common/jceditor/plugin/hyperlink/hyperlink.html",popupId);
 			var pluginDoc = $J("#"+popupId.replace("-div","-iframe"));		
 
 			obj.onLoadEvent(pluginDoc);
@@ -3977,7 +4091,7 @@ JCEditor.prototype.plugin.Quotation = function(oEditor){
 			var width = 275;
 			var height =((Browser.type=="MSIE" && Browser.version< 8) ||(Browser.type=="Opera") )? ((Browser.type=="MSIE" && Browser.version== 6))?460:420 : 440;
 			
-			oEditor.setPlugin(width,height,"/JCEditor/plugin/quotation/quotation.html",popupId);
+			oEditor.setPlugin(width,height,"/common/jceditor/plugin/quotation/quotation.html",popupId);
 			var pluginDoc = $J("#"+popupId.replace("-div","-iframe"));		
 
 			obj.onLoadEvent(pluginDoc);
@@ -4045,7 +4159,7 @@ JCEditor.prototype.plugin.Emoticon = function(oEditor){
 			var width = 402;
 			var height =((Browser.type=="MSIE" && Browser.version< 9) ||(Browser.type=="Opera") )? 300 : 310;
 			
-			oEditor.setPlugin(width,height,"/JCEditor/plugin/emoticon/emoticon.html",popupId);
+			oEditor.setPlugin(width,height,"/common/jceditor/plugin/emoticon/emoticon.html",popupId);
 			var pluginDoc = $J("#"+popupId.replace("-div","-iframe"));		
 
 			obj.onLoadEvent(pluginDoc);
@@ -4128,7 +4242,7 @@ JCEditor.prototype.plugin.Scharacter = function(oEditor){
 			var width = 382;
 			var height =((Browser.type=="MSIE" && Browser.version< 9) ||(Browser.type=="Opera") )? 320 : 330;
 			
-			oEditor.setPlugin(width,height,"/JCEditor/plugin/s_character/s_character.html",popupId);
+			oEditor.setPlugin(width,height,"/common/jceditor/plugin/s_character/s_character.html",popupId);
 			var pluginDoc = $J("#"+popupId.replace("-div","-iframe"));		
 
 			obj.onLoadEvent(pluginDoc);
@@ -4205,7 +4319,7 @@ JCEditor.prototype.plugin.Table = function(oEditor){
 			var width = 362;
 			var height =((Browser.type=="MSIE" && Browser.version< 8) ||(Browser.type=="Opera") )? ((Browser.type=="MSIE" && Browser.version== 6))?485:470 : 474;
 
-			oEditor.setPlugin(width,height,"/JCEditor/plugin/table/table.html",popupId);
+			oEditor.setPlugin(width,height,"/common/jceditor/plugin/table/table.html",popupId);
 			var pluginDoc = $J("#"+popupId.replace("-div","-iframe"));		
 
 			obj.onLoadEvent(pluginDoc);
@@ -4272,7 +4386,7 @@ JCEditor.prototype.plugin.Picture = function(oEditor){
 			var width = 362;
 			var height =((Browser.type=="MSIE" && Browser.version< 8) ||(Browser.type=="Opera") )? 520 : 530;
 			
-			oEditor.setPlugin(width,height,"/JCEditor/plugin/picture/picture.html",popupId);
+			oEditor.setPlugin(width,height,"/common/jceditor/plugin/picture/picture.html",popupId);
 			var pluginDoc = $J("#"+popupId.replace("-div","-iframe"));		
 
 			obj.onLoadEvent(pluginDoc);
@@ -4368,7 +4482,7 @@ JCEditor.prototype.plugin.Flash = function(oEditor){
 			var width = 362;
 			var height =((Browser.type=="MSIE" && Browser.version< 8) ||(Browser.type=="Opera") )? 580 : 590;
 			
-			oEditor.setPlugin(width,height,"/JCEditor/plugin/flash/flash.html",popupId);
+			oEditor.setPlugin(width,height,"/common/jceditor/plugin/flash/flash.html",popupId);
 			var pluginDoc = $J("#"+popupId.replace("-div","-iframe"));		
 
 			obj.onLoadEvent(pluginDoc);
@@ -4434,7 +4548,7 @@ JCEditor.prototype.plugin.Preview = function(oEditor){
 			var width = 640;
 			var height =((Browser.type=="MSIE" && Browser.version< 9) ||(Browser.type=="Opera") )? 464 : 476;
 			
-			oEditor.setPlugin(width,height,"/JCEditor/plugin/preview/preview.html",popupId);
+			oEditor.setPlugin(width,height,"/common/jceditor/plugin/preview/preview.html",popupId);
 			var pluginDoc = $J("#"+popupId.replace("-div","-iframe"));		
 			
 			var popupobj = $J("#"+popupId);
